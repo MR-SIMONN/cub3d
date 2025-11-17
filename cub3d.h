@@ -1,0 +1,94 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/09 13:34:13 by ielouarr          #+#    #+#             */
+/*   Updated: 2025/10/25 18:34:19 by moel-hai         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef CUB3D_H
+#define CUB3D_H
+
+#include <stdio.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <unistd.h>
+//get the next line part 
+
+# ifndef BUFFER_SIZE
+#define BUFFER_SIZE  2025
+# endif
+
+char	*ft_strchr(char *s, int c);
+char	*ft_strdup(char *s);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_substr(char *s, unsigned int start, size_t len);
+
+
+//cleaning 
+typedef struct s_heap
+{
+	void			*address;
+	struct s_heap	*next;
+}	t_heap;
+
+//structs
+
+typedef struct s_color {
+	int r;
+	int g;
+	int b;
+} t_color;
+
+typedef struct s_texture {
+	char *no;
+	char *so;
+	char *we;
+	char *ea;
+} t_texture;
+
+typedef struct s_map {
+	char **grid;
+	int width;
+	int height;
+} t_map;
+
+typedef struct s_player {
+	double x;
+	double y;
+	char dir;
+} t_player;
+
+typedef struct s_config {
+	t_texture   textures;
+	t_color     floor;
+	t_color     ceiling;
+	t_map       map;
+    t_player    player;
+	t_heap		*garbage; 
+} t_config;
+
+int ft_strnstr(char *haystack, char *needle, size_t len);
+int ft_strncmp(const char *s1, const char *s2, size_t ncmp);
+char	*get_next_line(int fd);
+int check_validmap(char *mapfile_name);
+int mapcollecting(t_config *config_list, char *map);
+int	ft_strlen(char *senc);
+char **get_rgb(char *rgbline);
+char **realloc_map(char **map, int old_size, int new_size);
+int	ft_atoi(const char *str);
+char	*ft_itoa(int n);
+char *remove_backslash_n(char *line);
+void init_config(t_config *config);
+
+
+//garbage_collector funcs
+void	free_everything(t_heap *h, int exit);
+void	*ft_malloc(size_t size, t_config *d);
+t_heap	*g_c(int should_update,	t_heap *new_value);
+
+#endif
