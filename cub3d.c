@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:30:21 by ielouarr          #+#    #+#             */
-/*   Updated: 2025/10/25 18:33:08 by moel-hai         ###   ########.fr       */
+/*   Updated: 2025/11/24 23:17:21 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,12 @@ int main(int ac, char **av)
     ret = mapcollecting(&configs, av[1]);
     if(ret)
     {
-        // free_config(configs);
-        free_everything(g_c(0, 0), -1);//use this to free and in case you want to exit,
-        //  pass the exit value in the second arg otherwise pass -1, lahiwafe9 a khay brother
+        free_everything(g_c(0, 0), -1);
         return(printf("Cub3d : invalid map"), 1);
     }
 
-    // ray_casting and textures :)
-
+    // ray casting and textures :)
+    
     free_everything(g_c(0, 0), -1);
     return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielouarr <ielouarr@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 19:56:27 by ielouarr          #+#    #+#             */
-/*   Updated: 2025/10/15 16:26:20 by ielouarr         ###   ########.fr       */
+/*   Updated: 2025/11/24 23:40:54 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static size_t	ft_intlen(long int n)
 	return (len);
 }
 
-char	*ft_itoa(int n, t_config *data)
+char	*ft_itoa(int n, t_config *cfg)
 {
 	char	*s;
 	size_t	len;
@@ -59,7 +59,7 @@ char	*ft_itoa(int n, t_config *data)
 
 	nbr = n;
 	len = ft_intlen(nbr);
-	s = ft_malloc(len + 1, data);
+	s = ft_malloc(len + 1, cfg);
 	if (!s)
 		return (NULL);
 	s[len] = '\0';

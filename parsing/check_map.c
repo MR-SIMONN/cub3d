@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielouarr <ielouarr@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 16:42:26 by ielouarr          #+#    #+#             */
-/*   Updated: 2025/10/15 16:33:02 by ielouarr         ###   ########.fr       */
+/*   Updated: 2025/11/24 23:40:54 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,12 +93,12 @@ int	check_rgb(char *line)
 }
 
 // Helper function to reallocate array
-char **realloc_map(char **map, int old_size, int new_size, t_config *data)
+char **realloc_map(char **map, int old_size, int new_size, t_config *cfg)
 {
 	char **new_map;
 	int i;
 
-	new_map = ft_malloc(sizeof(char *) * (new_size + 1), data);
+	new_map = ft_malloc(sizeof(char *) * (new_size + 1), cfg);
 	
 	i = 0;
 	while (i < old_size && map[i])
@@ -113,7 +113,7 @@ char **realloc_map(char **map, int old_size, int new_size, t_config *data)
     
 // }
 
-char *remove_backslash_n(char *line, t_config *data)
+char *remove_backslash_n(char *line, t_config *cfg)
 {
     int i;
     char *new_line;
@@ -125,7 +125,7 @@ char *remove_backslash_n(char *line, t_config *data)
     while (line[i] && line[i] != '\n')
         i++;
 
-    new_line = ft_malloc(i + 1, data);
+    new_line = ft_malloc(i + 1, cfg);
 
     int j = 0;
     while (j < i)
@@ -138,7 +138,7 @@ char *remove_backslash_n(char *line, t_config *data)
 }
 
 
-char	**check_textures(char *map, t_config *data)
+char	**check_textures(char *map, t_config *cfg)
 {
 	int		fd;
 	char	*line;
@@ -166,14 +166,14 @@ char	**check_textures(char *map, t_config *data)
 		
 		if (line[j] == '1')
 		{
-			map_extract = ft_malloc(sizeof(char *) * (capacity + 1), data);
-			map_extract[count++] = remove_backslash_n(line, data);
+			map_extract = ft_malloc(sizeof(char *) * (capacity + 1), cfg);
+			map_extract[count++] = remove_backslash_n(line, cfg);
 			while ((line = get_next_line(fd)))
 			{
 				if (count >= capacity)
 				{
 					capacity *= 2;
-					map_extract = realloc_map(map_extract, count, capacity, data);
+					map_extract = realloc_map(map_extract, count, capacity, cfg);
 				}
 				if (line[0] == '\n' || line[0] == '\0')
 				{
@@ -182,7 +182,7 @@ char	**check_textures(char *map, t_config *data)
 						return NULL;
 				}
 				
-				map_extract[count++] = remove_backslash_n(line, data);
+				map_extract[count++] = remove_backslash_n(line, cfg);
 			}
 			map_extract[count] = NULL;
 			
@@ -316,9 +316,9 @@ int checkmap(char **map)
     return 0;
 }
 
-int check_validmap(char *mapfile_name, t_config *data)
+int check_validmap(char *mapfile_name, t_config *cfg)
 {
-    char **map = check_textures(mapfile_name, data);
+    char **map = check_textures(mapfile_name, cfg);
     if(!map)
         return 1;
     if(checkmap(map))
