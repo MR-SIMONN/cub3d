@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-char *trim_texture_path(char *path)
+char *trim_texture_path(char *path, t_config *cfg)
 {
     int start;
     int end;
@@ -33,7 +33,7 @@ char *trim_texture_path(char *path)
     
     if (len <= 0)
         return (NULL);
-    trimmed = malloc(len + 1);
+    trimmed = ft_malloc(len + 1, cfg);
     if (!trimmed)
         return (NULL);
     j = 0;
@@ -53,31 +53,31 @@ int collecttextures(t_config *cfg, char *line, int j)
 	char **rgb = NULL;
 	if ((ft_strncmp(trimmed, "NO ", 3) == 0))
 	{
-		cfg->textures.no = trim_texture_path(trimmed + 3);
+		cfg->textures.no = trim_texture_path(trimmed + 3, cfg);
         if (!cfg->textures.no)
             return (1);		
 	}
 	else if ((ft_strncmp(trimmed, "SO ", 3) == 0))
 	{
-		cfg->textures.so = trim_texture_path(trimmed + 3);
+		cfg->textures.so = trim_texture_path(trimmed + 3, cfg);
         if (!cfg->textures.so)
             return (1);		
 	}
 	else if ((ft_strncmp(trimmed, "WE ", 3) == 0))
 	{
-		cfg->textures.we = trim_texture_path(trimmed + 3);
+		cfg->textures.we = trim_texture_path(trimmed + 3, cfg);
         if (!cfg->textures.we)
             return (1);		
 	}
 	else if ((ft_strncmp(trimmed, "EA ", 3) == 0))
 	{
-		cfg->textures.ea = trim_texture_path(trimmed + 3);
+		cfg->textures.ea = trim_texture_path(trimmed + 3, cfg);
         if (!cfg->textures.ea)
             return (1);		
 	}
 	else if ((ft_strncmp(trimmed, "F ", 2) == 0))
 	{
-		rgb = get_rgb(trimmed + 2);
+		rgb = get_rgb(trimmed + 2, cfg);
 		if(!rgb)
 			return (1);
 		cfg->floor.r = ft_atoi(rgb[0]);
@@ -86,7 +86,7 @@ int collecttextures(t_config *cfg, char *line, int j)
 	}
 	else if ((ft_strncmp(trimmed, "C ", 2) == 0))
 	{
-		rgb = get_rgb(trimmed + 2);
+		rgb = get_rgb(trimmed + 2, cfg);
 		if(!rgb)
 			return (1);
 		cfg->ceiling.r = ft_atoi(rgb[0]);
@@ -100,22 +100,20 @@ int collecttextures(t_config *cfg, char *line, int j)
 
 
 
-char **collectmap(char *line, int fd)
+char **collectmap(char *line, int fd, t_config *cfg)
 {
 	char **map_extract;
 	int capacity = 10;
 	int count = 0;
 
-	map_extract = malloc(sizeof(char *) * (capacity + 1));
-	if (!map_extract)
-		return (NULL);
-	map_extract[count++] = remove_backslash_n(line);
+	map_extract = ft_malloc(sizeof(char *) * (capacity + 1), cfg);
+	map_extract[count++] = remove_backslash_n(line, cfg);
 	while ((line = get_next_line(fd)))
 	{
 		if (count >= capacity)
 		{
 			capacity *= 2;
-			map_extract = realloc_map(map_extract, count, capacity);
+			map_extract = realloc_map(map_extract, count, capacity, cfg);
 			if (!map_extract)
 				return (NULL);
 		}
@@ -125,7 +123,7 @@ char **collectmap(char *line, int fd)
 			break;
 		}
 				
-		map_extract[count++] = remove_backslash_n(line);
+		map_extract[count++] = remove_backslash_n(line, cfg);
 	}
 	map_extract[count] = NULL;
 	return (map_extract);
@@ -153,7 +151,7 @@ int fcollect(char *mapfile, t_config *cfg)
 		}
 		if (line[j] == '1')
 		{
-			cfg->map.grid = collectmap(line, fd);
+			cfg->map.grid = collectmap(line, fd, cfg);
 			if(!cfg->map.grid)
 				cfg->map.grid = NULL;
 			return (0);

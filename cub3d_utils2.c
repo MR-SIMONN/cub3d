@@ -51,7 +51,7 @@ static size_t	ft_intlen(long int n)
 	return (len);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa(int n, t_config *data)
 {
 	char	*s;
 	size_t	len;
@@ -59,7 +59,7 @@ char	*ft_itoa(int n)
 
 	nbr = n;
 	len = ft_intlen(nbr);
-	s = malloc(len + 1);
+	s = ft_malloc(len + 1, data);
 	if (!s)
 		return (NULL);
 	s[len] = '\0';

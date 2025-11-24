@@ -1,7 +1,9 @@
 NAME        = cub3d
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror
-SRCS        = cub3d.c ./cleanup/cleanup.c cub3d_utils.c mapcollecting.c map_collecting_utils.c cub3d_utils2.c check_map.c ./get_next_line/get_next_line.c ./get_next_line/get_next_line_utils.c
+SRCS        = cub3d.c cleanup/cleanup.c cub3d_utils.c mapcollecting.c\
+		map_collecting_utils.c cub3d_utils2.c check_map.c get_next_line/get_next_line.c\
+		get_next_line/get_next_line_utils.c cleanup/trash_can.c cleanup/utils.c
 OBJS        = $(SRCS:.c=.o)
 
 all: $(NAME)

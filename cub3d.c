@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:30:21 by ielouarr          #+#    #+#             */
-/*   Updated: 2025/11/17 21:26:44 by moel-hai         ###   ########.fr       */
+/*   Updated: 2025/10/25 18:33:08 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int main(int ac, char **av)
 {
-    t_config *configs = NULL;
+    t_config configs;
     int fd;
     int ret;
 
@@ -27,11 +27,10 @@ int main(int ac, char **av)
     if(fd < 0)
         return (printf("Cub3d : can't access the file map"), 1);
     close(fd);
-    if(check_validmap(av[1]))
-        return(printf("Cub3d : invalid map"), 1);
-    configs = ft_malloc(sizeof(t_config), configs);
-    init_config(configs);
-    ret = mapcollecting(configs, av[1]);
+    init_config(&configs);
+    if(check_validmap(av[1], &configs))
+        return(printf("Cub3d : invalid map"), free_everything(g_c(0, 0), -1), 1);
+    ret = mapcollecting(&configs, av[1]);
     if(ret)
     {
         // free_config(configs);
@@ -39,7 +38,9 @@ int main(int ac, char **av)
         //  pass the exit value in the second arg otherwise pass -1, lahiwafe9 a khay brother
         return(printf("Cub3d : invalid map"), 1);
     }
-    // free_config(configs);
+
+    // ray_casting and textures :)
+
     free_everything(g_c(0, 0), -1);
     return (0);
 }

@@ -93,14 +93,12 @@ int	check_rgb(char *line)
 }
 
 // Helper function to reallocate array
-char **realloc_map(char **map, int old_size, int new_size)
+char **realloc_map(char **map, int old_size, int new_size, t_config *data)
 {
 	char **new_map;
 	int i;
 
-	new_map = malloc(sizeof(char *) * (new_size + 1));
-	if (!new_map)
-		return NULL;
+	new_map = ft_malloc(sizeof(char *) * (new_size + 1), data);
 	
 	i = 0;
 	while (i < old_size && map[i])
@@ -108,7 +106,6 @@ char **realloc_map(char **map, int old_size, int new_size)
 		new_map[i] = map[i];
 		i++;
 	}
-	free(map);
 	return new_map;
 }
 // int check_dup()
@@ -116,7 +113,7 @@ char **realloc_map(char **map, int old_size, int new_size)
     
 // }
 
-char *remove_backslash_n(char *line)
+char *remove_backslash_n(char *line, t_config *data)
 {
     int i;
     char *new_line;
@@ -128,9 +125,7 @@ char *remove_backslash_n(char *line)
     while (line[i] && line[i] != '\n')
         i++;
 
-    new_line = malloc(i + 1);
-    if (!new_line)
-        return (NULL);
+    new_line = ft_malloc(i + 1, data);
 
     int j = 0;
     while (j < i)
@@ -143,7 +138,7 @@ char *remove_backslash_n(char *line)
 }
 
 
-char	**check_textures(char *map)
+char	**check_textures(char *map, t_config *data)
 {
 	int		fd;
 	char	*line;
@@ -171,26 +166,14 @@ char	**check_textures(char *map)
 		
 		if (line[j] == '1')
 		{
-			map_extract = malloc(sizeof(char *) * (capacity + 1));
-			if (!map_extract)
-			{
-				free(line);
-				close(fd);
-				return NULL;
-			}
-			map_extract[count++] = remove_backslash_n(line);
+			map_extract = ft_malloc(sizeof(char *) * (capacity + 1), data);
+			map_extract[count++] = remove_backslash_n(line, data);
 			while ((line = get_next_line(fd)))
 			{
 				if (count >= capacity)
 				{
 					capacity *= 2;
-					map_extract = realloc_map(map_extract, count, capacity);
-					if (!map_extract)
-					{
-						free(line);
-						close(fd);
-						return NULL;
-					}
+					map_extract = realloc_map(map_extract, count, capacity, data);
 				}
 				if (line[0] == '\n' || line[0] == '\0')
 				{
@@ -199,7 +182,7 @@ char	**check_textures(char *map)
 						return NULL;
 				}
 				
-				map_extract[count++] = remove_backslash_n(line);
+				map_extract[count++] = remove_backslash_n(line, data);
 			}
 			map_extract[count] = NULL;
 			
@@ -303,7 +286,10 @@ int checkmap(char **map)
     int player_counter = 0;
     printf("=== Collected Map ===\n");
 	while (map[k])
-		printf("%s\n" ,map[k++]);
+	{
+		printf("%s\n" ,map[k]);
+		k++;
+	}
 	printf("=== End Map ===\n");
     printf("start checking");
     while(map[i])
@@ -329,9 +315,10 @@ int checkmap(char **map)
         return 1;
     return 0;
 }
-int check_validmap(char *mapfile_name)
+
+int check_validmap(char *mapfile_name, t_config *data)
 {
-    char **map = check_textures(mapfile_name);
+    char **map = check_textures(mapfile_name, data);
     if(!map)
         return 1;
     if(checkmap(map))

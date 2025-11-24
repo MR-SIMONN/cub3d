@@ -12,6 +12,13 @@
 
 #include "../cub3d.h"
 
+void	ft_putstr_fd(char *s, int fd)
+{
+	if (!s)
+		return ;
+	write(fd, s, ft_strlen(s));
+}
+
 t_heap	*g_c(int should_update,	t_heap *new_value)
 {
 	static t_heap	*h;
@@ -40,14 +47,14 @@ void	*ft_malloc(size_t size, t_config *d)
 	if (!p)
 	{
 		ft_putstr_fd("unexpected error with malloc\n", 2);
-		free_everything(d, 1);
+		free_everything(d->garbage, 1);
 	}
 	allocated = malloc(size);
 	if (!allocated)
 	{
 		ft_putstr_fd("unexpected error with malloc\n", 2);
 		free(p);
-		free_everything(d, 1);
+		free_everything(d->garbage, 1);
 	}
 	p->address = allocated;
 	p->next = NULL;

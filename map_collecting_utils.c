@@ -12,14 +12,16 @@
 
 #include "cub3d.h"
 
-char **get_rgb(char *rgbline)
+char **get_rgb(char *rgbline, t_config *cfg)
 {
     int i = 0;
     int component;
-    char **rgb = malloc(sizeof(char *) * 4);
+    char **rgb = ft_malloc(sizeof(char *) * 4, cfg);
 
     while(rgbline[i] == 32 || rgbline[i] == 9)
+	{
         i++;
+	}
 	component = 0;
 	while (component < 3)
 	{
@@ -41,7 +43,7 @@ char **get_rgb(char *rgbline)
 			return NULL;
 		while (rgbline[i] == ' ' || rgbline[i] == '\t')
 			i++;
-        rgb[component] = ft_itoa(value);
+        rgb[component] = ft_itoa(value, cfg);
 		component++;
 	}
     if(component != 3)

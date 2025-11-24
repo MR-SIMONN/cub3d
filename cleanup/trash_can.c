@@ -28,11 +28,21 @@ void	clear_trash(t_heap *lst)
 	}
 }
 
-void	free_everything(t_heap *h, int exit)
+void close_fds()
+{
+	int	i;
+
+	i = 3;
+	while (i < 1024)
+		close (i);
+}
+
+void	free_everything(t_heap *h, int _exit)
 {
 	if (!h)
 		return ;
+	close_fds();
 	clear_trash(h);
-    if (exit >= 0)
-        exit (exit);
+    if (_exit >= 0)
+        exit (_exit);
 }

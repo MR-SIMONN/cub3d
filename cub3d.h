@@ -75,14 +75,14 @@ typedef struct s_config {
 int ft_strnstr(char *haystack, char *needle, size_t len);
 int ft_strncmp(const char *s1, const char *s2, size_t ncmp);
 char	*get_next_line(int fd);
-int check_validmap(char *mapfile_name);
+int check_validmap(char *mapfile_name, t_config *data);
 int mapcollecting(t_config *config_list, char *map);
 int	ft_strlen(char *senc);
-char **get_rgb(char *rgbline);
-char **realloc_map(char **map, int old_size, int new_size);
+char **get_rgb(char *rgbline, t_config *cfg);
+char **realloc_map(char **map, int old_size, int new_size, t_config *data);
 int	ft_atoi(const char *str);
-char	*ft_itoa(int n);
-char *remove_backslash_n(char *line);
+char	*ft_itoa(int n, t_config *data);
+char *remove_backslash_n(char *line, t_config *data);
 void init_config(t_config *config);
 
 
