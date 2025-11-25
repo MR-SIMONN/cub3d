@@ -6,11 +6,11 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 19:56:27 by ielouarr          #+#    #+#             */
-/*   Updated: 2025/11/24 23:40:54 by moel-hai         ###   ########.fr       */
+/*   Updated: 2025/11/25 12:17:44 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 int	ft_atoi(const char *str)
 {

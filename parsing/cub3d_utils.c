@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielouarr <ielouarr@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 14:18:48 by ielouarr          #+#    #+#             */
-/*   Updated: 2025/10/14 15:43:03 by ielouarr         ###   ########.fr       */
+/*   Updated: 2025/11/25 12:17:41 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 int	ft_strlen(char *senc)
 {

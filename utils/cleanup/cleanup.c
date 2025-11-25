@@ -6,11 +6,11 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 17:30:00 by ielouarr          #+#    #+#             */
-/*   Updated: 2025/10/25 17:55:36 by moel-hai         ###   ########.fr       */
+/*   Updated: 2025/11/25 12:19:08 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../../cub3d.h"
 
 
 void init_config(t_config *config)

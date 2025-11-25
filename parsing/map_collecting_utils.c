@@ -6,11 +6,11 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 19:39:49 by ielouarr          #+#    #+#             */
-/*   Updated: 2025/10/25 18:37:25 by moel-hai         ###   ########.fr       */
+/*   Updated: 2025/11/25 12:17:47 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 char **get_rgb(char *rgbline, t_config *cfg)
 {

@@ -6,11 +6,11 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 15:34:18 by ielouarr          #+#    #+#             */
-/*   Updated: 2025/10/25 18:23:44 by moel-hai         ###   ########.fr       */
+/*   Updated: 2025/11/25 12:17:54 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 char *trim_texture_path(char *path, t_config *cfg)
 {

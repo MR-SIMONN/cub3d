@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:34:13 by ielouarr          #+#    #+#             */
-/*   Updated: 2025/11/24 23:47:48 by moel-hai         ###   ########.fr       */
+/*   Updated: 2025/11/25 10:41:58 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,7 @@
 #define WIN_HEIGHT 720
 
 
-char	*ft_strchr(char *s, int c);
-char	*ft_strdup(char *s);
-char	*ft_strjoin(char *s1, char *s2);
-char	*ft_substr(char *s, unsigned int start, size_t len);
+
 
 
 //cleaning 
@@ -92,8 +89,14 @@ typedef struct s_config {
 	t_heap		*garbage; 
 } t_config;
 
-int ft_strnstr(char *haystack, char *needle, size_t len);
-int ft_strncmp(const char *s1, const char *s2, size_t ncmp);
+
+
+char	*ft_strchr(char *s, int c);
+char	*ft_strdup(char *s);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_substr(char *s, unsigned int start, size_t len);
+int		ft_strnstr(char *haystack, char *needle, size_t len);
+int		ft_strncmp(const char *s1, const char *s2, size_t ncmp);
 char	*get_next_line(int fd);
 int check_validmap(char *mapfile_name, t_config *cfg);
 int mapcollecting(t_config *config_list, char *map);
