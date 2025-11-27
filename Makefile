@@ -7,7 +7,7 @@ SRCS        = cub3d.c utils/cleanup/cleanup.c parsing/cub3d_utils.c\
 		utils/get_next_line/get_next_line.c\
 		utils/get_next_line/get_next_line_utils.c\
 		utils/cleanup/trash_can.c\
-		utils/cleanup/utils.c
+		utils/cleanup/utils.c game/init_vectors.c game/mlx_setup.c
 OBJS        = $(SRCS:.c=.o)
 
 all: $(NAME)

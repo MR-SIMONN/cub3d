@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 17:20:48 by moel-hai          #+#    #+#             */
-/*   Updated: 2025/11/25 12:19:15 by moel-hai         ###   ########.fr       */
+/*   Updated: 2025/11/25 14:21:44 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void close_fds()
 
 	i = 3;
 	while (i < 1024)
-		close (i);
+		close (i++);
 }
 
 void	free_everything(t_heap *h, int _exit)

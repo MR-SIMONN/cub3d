@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 17:30:00 by ielouarr          #+#    #+#             */
-/*   Updated: 2025/11/25 12:19:08 by moel-hai         ###   ########.fr       */
+/*   Updated: 2025/11/25 13:12:32 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@ void init_config(t_config *config)
     config->player.x = 0;
     config->player.y = 0;
     config->player.dir = 0;
+    config->player.dir_x = 0;
+    config->player.dir_y = 0;
     config->garbage = NULL;
 }

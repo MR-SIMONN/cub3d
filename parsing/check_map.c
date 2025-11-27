@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 16:42:26 by ielouarr          #+#    #+#             */
-/*   Updated: 2025/11/25 12:33:13 by moel-hai         ###   ########.fr       */
+/*   Updated: 2025/11/25 16:17:23 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ int check_texture_filename(char *line)
 {
     int i;
     int j;
-    int fname_len;
-
+    int fname_len
     if (!line)
         return 0;
 
@@ -291,7 +290,7 @@ int checkmap(char **map)
 		k++;
 	}
 	printf("=== End Map ===\n");
-    printf("start checking");
+    printf("start checking\n");
     while(map[i])
     {
         j = 0;
