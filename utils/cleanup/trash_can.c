@@ -37,12 +37,12 @@ void close_fds()
 		close (i++);
 }
 
-void	free_everything(t_heap *h, int _exit)
+void	free_everything(t_heap *h, int exit_value)
 {
 	if (!h)
 		return ;
 	close_fds();
 	clear_trash(h);
-    if (_exit >= 0)
-        exit (_exit);
+    if (exit_value >= 0)
+        exit (exit_value);
 }

@@ -37,6 +37,7 @@ int main(int ac, char **av)
     }
 
     // ray casting and textures :)
+    run_game(&configs);
     
     free_everything(g_c(0, 0), -1);
     return (0);

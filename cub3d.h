@@ -26,8 +26,15 @@
 
 #define WIN_WIDTH  1280
 #define WIN_HEIGHT 720
-
-
+#define FOV	0.66
+#define ESC_KEY 53
+#define W_KEY   13
+#define A_KEY   0
+#define S_KEY   1
+#define D_KEY   2
+#define LEFT_ARROW 123
+#define RIGHT_ARROW 124
+#define CLOSE_BUTTON 17
 
 
 
@@ -79,6 +86,22 @@ typedef struct s_mlx {
 	int		endian;
 } t_mlx;
 
+typedef struct s_ray {
+	double	ray_dir_x;
+	double	ray_dir_y;
+	int		map_x;
+	int		map_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+	double	perp_wall_dist;
+}	t_ray;
+
 typedef struct s_config {
 	t_texture   textures;
 	t_color     floor;
@@ -98,16 +121,26 @@ char	*ft_substr(char *s, unsigned int start, size_t len);
 int		ft_strnstr(char *haystack, char *needle, size_t len);
 int		ft_strncmp(const char *s1, const char *s2, size_t ncmp);
 char	*get_next_line(int fd);
-int check_validmap(char *mapfile_name, t_config *cfg);
-int mapcollecting(t_config *config_list, char *map);
-int	ft_strlen(char *senc);
-char **get_rgb(char *rgbline, t_config *cfg);
-char **realloc_map(char **map, int old_size, int new_size, t_config *cfg);
-int	ft_atoi(const char *str);
+int		check_validmap(char *mapfile_name, t_config *cfg);
+int		mapcollecting(t_config *config_list, char *map);
+int		ft_strlen(char *senc);
+char	**get_rgb(char *rgbline, t_config *cfg);
+char	**realloc_map(char **map, int old_size, int new_size, t_config *cfg);
+int		ft_atoi(const char *str);
 char	*ft_itoa(int n, t_config *cfg);
-char *remove_backslash_n(char *line, t_config *cfg);
-void init_config(t_config *config);
+char	*remove_backslash_n(char *line, t_config *cfg);
+void	init_config(t_config *config);
 
+
+//ray_casting funcs
+int		run_game(t_config *configs);
+void	init_player_vectors(t_config *cfg);
+int		init_mlx(t_config *cfg);
+void	init_ray_data(t_config *cfg, t_ray *ray, int x);
+void	init_step_sidedist(t_config *cfg, t_ray *ray);
+int		render_frame(t_config *cfg);
+int		handle_key_press(int keycode, t_config *cfg);
+int		handle_close(t_config *cfg);
 
 //garbage_collector funcs
 void	free_everything(t_heap *h, int exit);

@@ -35,5 +35,7 @@ void init_config(t_config *config)
     config->player.dir = 0;
     config->player.dir_x = 0;
     config->player.dir_y = 0;
+    config->player.plane_x = 0;
+    config->player.plane_y = 0;
     config->garbage = NULL;
 }
