@@ -99,6 +99,7 @@ int	render_frame(t_config *cfg)
 
 	draw_floor_ceiling(cfg);
 	calculate_ray_casting(cfg);
+	mlx_put_image_to_window(cfg->mlx.mlx, cfg->mlx.win, cfg->mlx.img, 0, 0);
 
 	return (0);
 }

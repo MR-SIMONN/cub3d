@@ -16,7 +16,7 @@ int check_texture_filename(char *line)
 {
     int i;
     int j;
-    int fname_len
+    int fname_len;
     if (!line)
         return 0;
 

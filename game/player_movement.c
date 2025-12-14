@@ -5,8 +5,8 @@ void	move_player(t_config *cfg, double dir_x, double dir_y)
 	double	new_x;
 	double	new_y;
 	
-	new_x = cfg->player.x + dir_x * 4.0;
-	new_y = cfg->player.y + dir_y * 4.0;
+	new_x = cfg->player.x + dir_x * PLAYER_SPEED;
+	new_y = cfg->player.y + dir_y * PLAYER_SPEED;
 	if (cfg->map.grid[(int)(new_y / 64)][(int)(new_x / 64)] != '1')
 	{
 		cfg->player.x = new_x;
@@ -18,6 +18,8 @@ void	rotate_player(t_config *cfg, double rot_speed)
 {
 	double	old_dir_x;
 	double	old_plane_x;
+
+	//rotation matrix formula ;)
 
 	old_dir_x = cfg->player.dir_x;
 	cfg->player.dir_x = cfg->player.dir_x * cos(rot_speed)

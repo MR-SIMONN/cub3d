@@ -1,6 +1,6 @@
 #include "../cub3d.h"
 
-int	handle_close(t_config *cfg)
+int	handle_close(void)
 {
 	free_everything(g_c(0, 0), 0);
     return (0);
@@ -19,9 +19,9 @@ int	handle_key_press(int keycode, t_config *cfg)
 	else if (keycode == A_KEY)
 		move_player(cfg, -cfg->player.plane_x, -cfg->player.plane_y);
 	else if (keycode == LEFT_ARROW)
-		rotate_player(cfg, 0.05);
-	else if (keycode == RIGHT_ARROW)
 		rotate_player(cfg, -0.05);
+	else if (keycode == RIGHT_ARROW)
+		rotate_player(cfg, 0.05);
 	
 	if (keycode == W_KEY || keycode == S_KEY || keycode == A_KEY
 		|| keycode == D_KEY || keycode == LEFT_ARROW || keycode == RIGHT_ARROW)
