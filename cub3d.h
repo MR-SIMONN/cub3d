@@ -147,6 +147,7 @@ int		handle_close(t_config *cfg);
 void    move_player(t_config *cfg, double dir_x, double dir_y);
 void    rotate_player(t_config *cfg, double rot_speed);
 void	put_pixel_to_img(t_mlx *mlx, int x, int y, int color);
+void	draw_wall_slice(t_config *cfg, t_ray *ray, int x);
 
 //garbage_collector funcs
 void	free_everything(t_heap *h, int exit);
