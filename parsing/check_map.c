@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielouarr <ielouarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 16:42:26 by ielouarr          #+#    #+#             */
-/*   Updated: 2025/11/25 16:17:23 by moel-hai         ###   ########.fr       */
+/*   Updated: 2025/12/22 18:42:53 by ielouarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int check_texture_filename(char *line)
 {
     int i;
     int j;
-    int fname_len
+    int fname_len;
     if (!line)
         return 0;
 
