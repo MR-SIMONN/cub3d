@@ -78,11 +78,10 @@ int	load_pixel_from_texture(t_config *cfg, t_ray *ray, int y, int wall_height)
 		tex_x = tex->width - 1;
 
 	// Get the y coordinate on the texture based on the screen pixel
-	int draw_start = -wall_height / 2 + WIN_HEIGHT / 2;
-	if (draw_start < 0)
-		draw_start = 0;
-		
-	tex_y = (int)((y - draw_start) * (double)tex->height / wall_height);
+	draw_start = -wall_height / 2 + WIN_HEIGHT / 2;
+	// Calculate texture position - this accounts for the off-screen portion
+	tex_pos = (y - draw_start) * (double)tex->height / wall_height;
+	tex_y = (int)tex_pos;
 
 	if (tex_y < 0)
 		tex_y = 0;
