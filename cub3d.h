@@ -17,6 +17,8 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <mlx.h>
+#include <math.h>
 //get the next line part 
 
 # ifndef BUFFER_SIZE
@@ -26,6 +28,7 @@
 
 #define WIN_WIDTH  1280
 #define WIN_HEIGHT 720
+#define PLAYER_SPEED 4
 #define FOV	0.66
 #define ESC_KEY 53
 #define W_KEY   13
@@ -141,6 +144,10 @@ void	init_step_sidedist(t_config *cfg, t_ray *ray);
 int		render_frame(t_config *cfg);
 int		handle_key_press(int keycode, t_config *cfg);
 int		handle_close(t_config *cfg);
+void    move_player(t_config *cfg, double dir_x, double dir_y);
+void    rotate_player(t_config *cfg, double rot_speed);
+void	put_pixel_to_img(t_mlx *mlx, int x, int y, int color);
+void	draw_wall_slice(t_config *cfg, t_ray *ray, int x);
 
 //garbage_collector funcs
 void	free_everything(t_heap *h, int exit);
