@@ -24,69 +24,93 @@ int	load_all_textures(t_config *cfg)
 	return (0);
 }
 
-int	get_texture_pixel(t_texture_img *tex, int x, int y)
+
+// Select texture based on wall direction
+t_texture_img	*select_texture(t_config *cfg, t_ray *ray)
 {
-	char	*dst;
-	int		offset;
-	int		bytes_per_pixel;
-
-	if (x < 0 || x >= tex->width || y < 0 || y >= tex->height)
-		return (0);
-	bytes_per_pixel = tex->bpp / 8;
-	offset = (y * tex->line_len) + (x * bytes_per_pixel);
-	dst = tex->addr + offset;
-	return (*(unsigned int *)dst);
-}
-
-// Calculate which pixel from texture to draw based on wall height and position
-int	load_pixel_from_texture(t_config *cfg, t_ray *ray, int y, int wall_height)
-{
-	t_texture_img	*tex;
-	double			wall_x;
-	int				tex_x;
-	int				tex_y;
-
-	// Select the correct texture based on which wall side was hit
-	if (ray->side == 0)  // vertical wall (NS facing)
+	if (ray->side == 0)
 	{
 		if (ray->step_x > 0)
-			tex = &cfg->tex_ea;  // east wall
+			return (&cfg->tex_ea);
 		else
-			tex = &cfg->tex_we;  // west wall
-		// Calculate exact hit position on the wall
-		wall_x = cfg->player.y + ray->perp_wall_dist * ray->ray_dir_y;
+			return (&cfg->tex_we);
 	}
-	else  // horizontal wall (EW facing)
+	else
 	{
 		if (ray->step_y > 0)
-			tex = &cfg->tex_so;  // south wall
+			return (&cfg->tex_so);
 		else
-			tex = &cfg->tex_no;  // north wall
-		// Calculate exact hit position on the wall
-		wall_x = cfg->player.x + ray->perp_wall_dist * ray->ray_dir_x;
+			return (&cfg->tex_no);
 	}
+}
 
-	// Convert to texture coordinate (0.0 to 1.0)
-	wall_x = wall_x / 64.0;  // Divide by tile size
-	wall_x = wall_x - floor(wall_x);  // Get fractional part
+// Calculate wall X position (where ray hit the wall)
+double	calculate_wall_x(t_config *cfg, t_ray *ray)
+{
+	double	wall_x;
+
+	if (ray->side == 0)
+		wall_x = cfg->player.y + ray->perp_wall_dist * ray->ray_dir_y;
+	else
+		wall_x = cfg->player.x + ray->perp_wall_dist * ray->ray_dir_x;
 	
-	// Get the x coordinate on the texture
-	tex_x = (int)(wall_x * (double)tex->width);
+	wall_x = wall_x / 64.0;
+	wall_x = wall_x - floor(wall_x);
+	
+	return (wall_x);
+}
+
+// Draw textured wall column directly
+void	draw_textured_wall(t_config *cfg, t_ray *ray, int x)
+{
+	t_texture_img	*tex;
+	int				line_height;
+	int				draw_start;
+	int				draw_end;
+	int				tex_x;
+	double			step;
+	double			tex_pos;
+	int				y;
+
+	tex = select_texture(cfg, ray);
+	line_height = (int)(WIN_HEIGHT / (ray->perp_wall_dist / 64.0));
+	
+	// Calculate draw boundaries (unclamped for texture calculation)
+	draw_start = -line_height / 2 + WIN_HEIGHT / 2;
+	draw_end = line_height / 2 + WIN_HEIGHT / 2;
+	
+	// Get texture X coordinate
+	tex_x = (int)(calculate_wall_x(cfg, ray) * (double)tex->width);
 	if (tex_x < 0)
 		tex_x = 0;
 	if (tex_x >= tex->width)
 		tex_x = tex->width - 1;
-
-	// Get the y coordinate on the texture based on the screen pixel
-	draw_start = -wall_height / 2 + WIN_HEIGHT / 2;
-	// Calculate texture position - this accounts for the off-screen portion
-	tex_pos = (y - draw_start) * (double)tex->height / wall_height;
-	tex_y = (int)tex_pos;
-
-	if (tex_y < 0)
-		tex_y = 0;
-	if (tex_y >= tex->height)
-		tex_y = tex->height - 1;
-
-	return (get_texture_pixel(tex, tex_x, tex_y));
+	
+	// Calculate step and starting texture position
+	step = (double)tex->height / line_height;
+	tex_pos = 0;
+	
+	// If draw_start is negative, adjust tex_pos to skip invisible part
+	if (draw_start < 0)
+	{
+		tex_pos = -draw_start * step;
+		draw_start = 0;
+	}
+	
+	// Clamp draw_end
+	if (draw_end >= WIN_HEIGHT)
+		draw_end = WIN_HEIGHT - 1;
+	
+	// Draw the visible part of the wall
+	y = draw_start;
+	while (y <= draw_end)
+	{
+		int tex_y = (int)tex_pos;
+		if (tex_y >= tex->height)
+			tex_y = tex->height - 1;
+		
+		put_pixel_to_img(&cfg->mlx, x, y, get_texture_pixel(tex, tex_x, tex_y));
+		tex_pos += step;
+		y++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: ielouarr <ielouarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:34:13 by ielouarr          #+#    #+#             */
-/*   Updated: 2025/12/22 17:04:29 by ielouarr         ###   ########.fr       */
+/*   Updated: 2025/12/25 19:25:38 by ielouarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,10 +154,12 @@ void	init_config(t_config *config);
 int		load_texture(char *path, t_texture_img *tex, void *mlx);
 int		load_all_textures(t_config *cfg);
 int		get_texture_pixel(t_texture_img *tex, int x, int y);
-int		load_pixel_from_texture(t_config *cfg, t_ray *ray, int y, int wall_height);
 void	destroy_texture(t_texture_img *tex, void *mlx);
 void	destroy_all_textures(t_config *cfg);
 void	destroy_mlx(t_config *cfg);
+void	draw_textured_wall(t_config *cfg, t_ray *ray, int x);
+t_texture_img	*select_texture(t_config *cfg, t_ray *ray);
+double	calculate_wall_x(t_config *cfg, t_ray *ray);
 
 //ray_casting funcs
 

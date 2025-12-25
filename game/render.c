@@ -36,7 +36,7 @@ void	calculate_ray_casting(t_config *cfg)
 		init_ray_data(cfg, &ray, x);
 		init_step_sidedist(cfg, &ray);
 		perform_dda(cfg, &ray);
-		draw_wall_slice(cfg, &ray, x);
+		draw_textured_wall(cfg, &ray, x);
 		x++;
 	}
 }
