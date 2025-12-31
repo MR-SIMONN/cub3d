@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mapcollecting.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielouarr <ielouarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 15:34:18 by ielouarr          #+#    #+#             */
-/*   Updated: 2025/11/25 12:17:54 by moel-hai         ###   ########.fr       */
+/*   Updated: 2025/12/22 16:42:00 by ielouarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,7 @@ char **collectmap(char *line, int fd, t_config *cfg)
 		{
 			free(line);
 			break;
-		}
-				
+		}	
 		map_extract[count++] = remove_backslash_n(line, cfg);
 	}
 	map_extract[count] = NULL;

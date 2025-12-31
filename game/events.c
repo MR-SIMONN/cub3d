@@ -1,16 +1,28 @@
 #include "../cub3d.h"
 
-int	handle_close(void)
+int	handle_close(t_config *cfg)
 {
-	free_everything(g_c(0, 0), 0);
-    return (0);
+	// Clean up MLX resources (textures, images, window)
+	destroy_mlx(cfg);
+	
+	// Clean up everything else (map, strings, etc.)
+	free_everything(cfg->garbage, 0);
+	
+	exit(0);
+	return (0);
 }
 
 int	handle_key_press(int keycode, t_config *cfg)
 {
 	if (keycode == ESC_KEY)
+	{
+		// Clean up MLX resources
+		destroy_mlx(cfg);
+		// Clean up everything else
 		free_everything(g_c(0, 0), 0);
-    else if (keycode == W_KEY)
+		exit(0);
+	}
+	else if (keycode == W_KEY)
 		move_player(cfg, cfg->player.dir_x, cfg->player.dir_y);
 	else if (keycode == S_KEY)
 		move_player(cfg, -cfg->player.dir_x, -cfg->player.dir_y);
