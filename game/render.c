@@ -36,7 +36,7 @@ void	calculate_ray_casting(t_config *cfg)
 		init_ray_data(cfg, &ray, x);
 		init_step_sidedist(cfg, &ray);
 		perform_dda(cfg, &ray);
-		draw_wall_slice(cfg, &ray, x);
+		draw_textured_wall(cfg, &ray, x);
 		x++;
 	}
 }
@@ -70,6 +70,14 @@ int	render_frame(t_config *cfg)
 {
 	if (!cfg->mlx.win)
 		return (1);
+	
+	// Safety check: make sure textures are loaded
+	if (!cfg->tex_no.img || !cfg->tex_so.img || 
+		!cfg->tex_we.img || !cfg->tex_ea.img)
+	{
+		printf("Error: Textures not loaded\n");
+		return (1);
+	}
 
 	draw_floor_ceiling(cfg);
 	calculate_ray_casting(cfg);

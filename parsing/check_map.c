@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielouarr <ielouarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 16:42:26 by ielouarr          #+#    #+#             */
-/*   Updated: 2025/11/25 16:17:23 by moel-hai         ###   ########.fr       */
+/*   Updated: 2025/12/25 19:45:34 by ielouarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,11 @@ int check_texture_filename(char *line)
     int i;
     int j;
     int fname_len;
+
     if (!line)
         return 0;
-
     if (ft_strlen(line) < 8)
         return 0;
-
     i = 2;
     while (line[i] && (line[i] == ' ' || line[i] == '\t'))
         i++;
@@ -31,23 +30,18 @@ int check_texture_filename(char *line)
     j = i;
     while (line[j] && line[j] != ' ' && line[j] != '\t' && line[j] != '\n')
         j++;
-
     fname_len = j - i;
     if (fname_len < 4)
         return 0;
-
     if (!(line[i + fname_len - 4] == '.'
           && line[i + fname_len - 3] == 'x'
           && line[i + fname_len - 2] == 'p'
           && line[i + fname_len - 1] == 'm'))
         return 0;
-
     while (line[j] && (line[j] == ' ' || line[j] == '\t'))
         j++;
-
     if (line[j] != '\0' && line[j] != '\n')
         return 0;
-
     return 1;
 }
 
