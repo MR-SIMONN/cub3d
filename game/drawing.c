@@ -24,10 +24,10 @@ void	draw_wall_slice(t_config *cfg, t_ray *ray, int x)
 	int	wall_color;
 
 	line_height = (int)(WIN_HEIGHT / (ray->perp_wall_dist / 64.0));
-	draw_start = -line_height / 2 + WIN_HEIGHT / 2;
+	draw_start = WIN_HEIGHT / 2 - line_height / 2;
 	if (draw_start < 0)
 		draw_start = 0;
-	draw_end = line_height / 2 + WIN_HEIGHT / 2;
+	draw_end = WIN_HEIGHT / 2 + line_height / 2;
 	if (draw_end >= WIN_HEIGHT)
 		draw_end = WIN_HEIGHT - 1;
 	wall_color = 0x00FF00;

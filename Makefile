@@ -1,7 +1,7 @@
 NAME        = cub3d
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror
-MLX = -lmlx -framework OpenGL -framework AppKit
+MLX = -Lmlx_linux -lmlx -lX11 -lXext -lm
 SRCS        = cub3d.c utils/cleanup/cleanup.c parsing/cub3d_utils.c \
 		parsing/mapcollecting.c parsing/map_collecting_utils.c \
 		parsing/cub3d_utils2.c parsing/check_map.c \
@@ -10,8 +10,9 @@ SRCS        = cub3d.c utils/cleanup/cleanup.c parsing/cub3d_utils.c \
 		utils/cleanup/trash_can.c \
 		utils/cleanup/utils.c game/drawing.c \
 		game/events.c game/game.c player_movement.c \
-		game/render.c game/setup.c \
-OBJS        = $(SRCS:.c=.o)
+		game/render.c game/setup.c
+
+OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
