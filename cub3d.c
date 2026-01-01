@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielouarr <ielouarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:30:21 by ielouarr          #+#    #+#             */
-/*   Updated: 2025/12/22 18:46:05 by ielouarr         ###   ########.fr       */
+/*   Updated: 2026/01/01 17:06:37 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int main(int ac, char **av)
         return(printf("Cub3d : invalid map"), 1);
     }
 
-    // ray casting and textures :)
     run_game(&configs);
     destroy_mlx(&configs);
     free_everything(g_c(0, 0), -1);
