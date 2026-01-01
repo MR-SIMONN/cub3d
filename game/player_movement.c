@@ -47,15 +47,15 @@ int	keys_update(t_config *cfg)
 {
 	if (cfg->key.w)
 		move_player(cfg, cfg->player.dir_x, cfg->player.dir_y);
-	else if (cfg->key.d)
+	if (cfg->key.d)
 		move_player(cfg, cfg->player.plane_x, cfg->player.plane_y);
-	else if (cfg->key.s)
+	if (cfg->key.s)
 		move_player(cfg, -cfg->player.dir_x, -cfg->player.dir_y);
-	else if (cfg->key.a)
+	if (cfg->key.a)
 		move_player(cfg, -cfg->player.plane_x, -cfg->player.plane_y);
-	else if (cfg->key.left)
+	if (cfg->key.left)
 		rotate_player(cfg, -ROTATION_SPEED);
-	else if (cfg->key.right)
+	if (cfg->key.right)
 		rotate_player(cfg, ROTATION_SPEED);
 	return (0);
 }
