@@ -87,3 +87,13 @@ void	init_step_sidedist(t_config *cfg, t_ray *ray)
 			* ray->delta_dist_y / 64.0;
 	}
 }
+
+void	init_keys(t_config *cfg)
+{
+	cfg->key.a = 0;
+	cfg->key.w = 0;
+	cfg->key.d = 0;
+	cfg->key.s = 0;
+	cfg->key.left = 0;
+	cfg->key.right = 0;
+}

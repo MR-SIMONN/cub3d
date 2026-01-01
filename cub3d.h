@@ -6,7 +6,7 @@
 /*   By: mihowk <mihowk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:34:13 by ielouarr          #+#    #+#             */
-/*   Updated: 2025/12/31 17:43:49 by mihowk           ###   ########.fr       */
+/*   Updated: 2026/01/01 08:05:31 by mihowk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,16 @@ typedef struct s_heap
 }	t_heap;
 
 //structs
+
+typedef struct s_keys
+{
+	int	a;
+	int	d;
+	int	w;
+	int	s;
+	int	right;
+	int	left;
+}	t_keys;
 
 typedef struct s_color {
 	int r;
@@ -133,6 +143,7 @@ typedef struct s_config {
 	t_map       map;
 	t_player    player;
 	t_mlx       mlx;
+	t_keys		key;
 	t_heap		*garbage; 
 } t_config;
 
@@ -172,16 +183,18 @@ double	calculate_wall_x(t_config *cfg, t_ray *ray);
 
 int		run_game(t_config *configs);
 void	init_player_vectors(t_config *cfg);
+void	init_keys(t_config *cfg);
 int		init_mlx(t_config *cfg);
 void	init_ray_data(t_config *cfg, t_ray *ray, int x);
 void	init_step_sidedist(t_config *cfg, t_ray *ray);
 int		render_frame(t_config *cfg);
+int		keys_update(t_config *cfg);
 int		handle_key_press(int keycode, t_config *cfg);
+int		handle_key_release(int keycode, t_config *cfg);
 int		handle_close(t_config *cfg);
 void    move_player(t_config *cfg, double dir_x, double dir_y);
 void    rotate_player(t_config *cfg, double rot_speed);
 void	put_pixel_to_img(t_mlx *mlx, int x, int y, int color);
-void	draw_wall_slice(t_config *cfg, t_ray *ray, int x);
 
 //garbage_collector funcs
 
