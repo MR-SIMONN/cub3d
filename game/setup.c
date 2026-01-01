@@ -65,8 +65,8 @@ void	init_ray_data(t_config *cfg, t_ray *ray, int x)
 	ray->ray_dir_y = cfg->player.dir_y + cfg->player.plane_y * camera_x;
 	ray->map_x = (int)(cfg->player.x / 64);
 	ray->map_y = (int)(cfg->player.y / 64);
-	ray->delta_dist_x = fabs(64.0 / ray->ray_dir_x);
-	ray->delta_dist_y = fabs(64.0 / ray->ray_dir_y);
+	ray->delta_dist_x = fabs(64 / ray->ray_dir_x);
+	ray->delta_dist_y = fabs(64 / ray->ray_dir_y);
 }
 
 void	init_step_sidedist(t_config *cfg, t_ray *ray)
@@ -76,24 +76,24 @@ void	init_step_sidedist(t_config *cfg, t_ray *ray)
 	{
 		ray->step_x = -1;
 		ray->side_dist_x = (cfg->player.x - ray->map_x * 64)
-			* ray->delta_dist_x / 64.0;
+			* ray->delta_dist_x / 64;
 	}
 	else
 	{
 		ray->step_x = 1;
 		ray->side_dist_x = (ray->map_x * 64 + 64 - cfg->player.x)
-			* ray->delta_dist_x / 64.0;
+			* ray->delta_dist_x / 64;
 	}
 	if (ray->ray_dir_y < 0)
 	{
 		ray->step_y = -1;
 		ray->side_dist_y = (cfg->player.y - ray->map_y * 64)
-			* ray->delta_dist_y / 64.0;
+			* ray->delta_dist_y / 64;
 	}
 	else
 	{
 		ray->step_y = 1;
 		ray->side_dist_y = (ray->map_y * 64 + 64 - cfg->player.y)
-			* ray->delta_dist_y / 64.0;
+			* ray->delta_dist_y / 64;
 	}
 }

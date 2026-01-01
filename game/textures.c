@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 10:09:58 by moel-hai          #+#    #+#             */
-/*   Updated: 2026/01/01 10:26:12 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/01 10:36:51 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ double	calculate_wall_x(t_config *cfg, t_ray *ray)
 	else
 		wall_x = cfg->player.x + ray->perp_wall_dist * ray->ray_dir_x;
 	
-	wall_x = wall_x / 64.0;
+	wall_x = wall_x / 64;
 	wall_x = wall_x - floor(wall_x);
 	
 	return (wall_x);
