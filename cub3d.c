@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielouarr <ielouarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mihowk <mihowk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:30:21 by ielouarr          #+#    #+#             */
-/*   Updated: 2025/12/22 18:46:05 by ielouarr         ###   ########.fr       */
+/*   Updated: 2025/12/31 18:06:28 by mihowk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ int main(int ac, char **av)
     close(fd);
     init_config(&configs);
     if(check_validmap(av[1], &configs))
-        return(printf("Cub3d : invalid map"), free_everything(g_c(0, 0), -1), 1);
+        return(printf("Cub3d : invalid map\n"), free_everything(g_c(0, 0), -1), 1);
     ret = mapcollecting(&configs, av[1]);
     if(ret)
     {
         free_everything(g_c(0, 0), -1);
-        return(printf("Cub3d : invalid map"), 1);
+        return(printf("Cub3d : invalid map\n"), 1);
     }
 
     // ray casting and textures :)

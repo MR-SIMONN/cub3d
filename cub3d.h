@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielouarr <ielouarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mihowk <mihowk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:34:13 by ielouarr          #+#    #+#             */
-/*   Updated: 2025/12/25 19:25:38 by ielouarr         ###   ########.fr       */
+/*   Updated: 2025/12/31 17:43:49 by mihowk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,20 @@
 #define WIN_HEIGHT 720
 #define PLAYER_SPEED 4
 #define FOV	0.66
-#define ESC_KEY 53
-#define W_KEY   13
-#define A_KEY   0
-#define S_KEY   1
-#define D_KEY   2
-#define LEFT_ARROW 123
-#define RIGHT_ARROW 124
+#define ESC_KEY 65307
+#define W_KEY 119
+#define A_KEY 97
+#define S_KEY 115
+#define D_KEY 100
+#define LEFT_ARROW 65361
+#define RIGHT_ARROW 65363
+// #define ESC_KEY 53
+// #define W_KEY   13
+// #define A_KEY   0
+// #define S_KEY   1
+// #define D_KEY   2
+// #define LEFT_ARROW 123
+// #define RIGHT_ARROW 124
 #define CLOSE_BUTTON 17
 
 

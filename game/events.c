@@ -16,9 +16,7 @@ int	handle_key_press(int keycode, t_config *cfg)
 {
 	if (keycode == ESC_KEY)
 	{
-		// Clean up MLX resources
 		destroy_mlx(cfg);
-		// Clean up everything else
 		free_everything(g_c(0, 0), 0);
 		exit(0);
 	}

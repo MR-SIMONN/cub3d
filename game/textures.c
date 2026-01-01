@@ -74,12 +74,10 @@ void	draw_textured_wall(t_config *cfg, t_ray *ray, int x)
 
 	tex = select_texture(cfg, ray);
 	line_height = (int)(WIN_HEIGHT / (ray->perp_wall_dist / 64.0));
-	
-	// Calculate draw boundaries (unclamped for texture calculation)
-	draw_start = -line_height / 2 + WIN_HEIGHT / 2;
-	draw_end = line_height / 2 + WIN_HEIGHT / 2;
-	
-	// Get texture X coordinate
+
+	draw_start = WIN_HEIGHT / 2 - line_height / 2;
+	draw_end =WIN_HEIGHT / 2 + line_height / 2;
+
 	tex_x = (int)(calculate_wall_x(cfg, ray) * (double)tex->width);
 	if (tex_x < 0)
 		tex_x = 0;

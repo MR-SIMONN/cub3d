@@ -3,7 +3,9 @@
 void	init_player_vectors(t_config *cfg)
 {
     if (!cfg)
-        return;
+        {
+			return;
+		}
 	if (cfg->player.dir == 'N')
 	{
 		cfg->player.dir_y = -1.0;
