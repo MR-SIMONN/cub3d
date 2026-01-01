@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielouarr <ielouarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:34:13 by ielouarr          #+#    #+#             */
-/*   Updated: 2025/12/25 19:25:38 by ielouarr         ###   ########.fr       */
+/*   Updated: 2026/01/01 11:47:49 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 #define WIN_WIDTH  1280
 #define WIN_HEIGHT 720
 #define PLAYER_SPEED 4
+#define ROTATION_SPEED 0.05
 #define FOV	0.66
 #define ESC_KEY 53
 #define W_KEY   13
@@ -49,6 +50,16 @@ typedef struct s_heap
 }	t_heap;
 
 //structs
+
+typedef struct s_keys
+{
+	int	a;
+	int	d;
+	int	w;
+	int	s;
+	int	right;
+	int	left;
+}	t_keys;
 
 typedef struct s_color {
 	int r;
@@ -126,6 +137,7 @@ typedef struct s_config {
 	t_map       map;
 	t_player    player;
 	t_mlx       mlx;
+	t_keys		key;
 	t_heap		*garbage; 
 } t_config;
 
@@ -169,12 +181,13 @@ int		init_mlx(t_config *cfg);
 void	init_ray_data(t_config *cfg, t_ray *ray, int x);
 void	init_step_sidedist(t_config *cfg, t_ray *ray);
 int		render_frame(t_config *cfg);
+int		keys_update(t_config *cfg);
 int		handle_key_press(int keycode, t_config *cfg);
+int		handle_key_release(int keycode, t_config *cfg);
 int		handle_close(t_config *cfg);
 void    move_player(t_config *cfg, double dir_x, double dir_y);
 void    rotate_player(t_config *cfg, double rot_speed);
 void	put_pixel_to_img(t_mlx *mlx, int x, int y, int color);
-void	draw_wall_slice(t_config *cfg, t_ray *ray, int x);
 
 //garbage_collector funcs
 

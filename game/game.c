@@ -22,8 +22,9 @@ int	run_game(t_config *configs)
 		printf("Error: Failed to load textures\n");
 		free_everything(g_c(0, 0), 1);
 	}
-	mlx_hook(configs->mlx.win, 2, 1L << 0, handle_key_press, configs);
-	mlx_hook(configs->mlx.win, 17, 1L << 17, handle_close, configs);
+	mlx_hook (configs->mlx.win, 2, 0, handle_key_press, configs);
+	mlx_hook (configs->mlx.win, 3, 0, handle_key_release, configs);
+	mlx_hook (configs->mlx.win, 17, 0, handle_close, configs);
 	mlx_loop_hook(configs->mlx.mlx, render_frame, configs);
 	mlx_loop(configs->mlx.mlx);
 	return (0);
