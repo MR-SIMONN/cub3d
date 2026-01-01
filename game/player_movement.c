@@ -19,11 +19,10 @@ void	move_player(t_config *cfg, double dir_x, double dir_y)
 
 	new_x = cfg->player.x + dir_x * PLAYER_SPEED;
 	new_y = cfg->player.y + dir_y * PLAYER_SPEED;
-	if (cfg->map.grid[(int)(new_y / 64)][(int)(new_x / 64)] != '1')
-	{
-		cfg->player.x = new_x;
+	if (cfg->map.grid[(int)(new_y / 64)][(int)(cfg->player.x / 64)] != '1')
 		cfg->player.y = new_y;
-	}
+	if (cfg->map.grid[(int)(cfg->player.y / 64)][(int)(new_x / 64)] != '1')
+		cfg->player.x = new_x;
 }
 
 void	rotate_player(t_config *cfg, double rot_speed)
