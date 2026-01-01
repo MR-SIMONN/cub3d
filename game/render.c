@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/01 10:09:52 by moel-hai          #+#    #+#             */
+/*   Updated: 2026/01/01 10:09:52 by moel-hai         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 void	perform_dda(t_config *cfg, t_ray *ray)
@@ -27,7 +39,7 @@ void	perform_dda(t_config *cfg, t_ray *ray)
 
 void	calculate_ray_casting(t_config *cfg)
 {
-    int		x;
+	int		x;
 	t_ray	ray;
 
 	x = 0;
@@ -49,7 +61,8 @@ void	draw_floor_ceiling(t_config *cfg)
 	int	ceiling_color;
 
 	floor_color = (cfg->floor.r << 16) | (cfg->floor.g << 8) | cfg->floor.b;
-	ceiling_color = (cfg->ceiling.r << 16) | (cfg->ceiling.g << 8) | cfg->ceiling.b;
+	ceiling_color = (cfg->ceiling.r << 16) | (cfg->ceiling.g << 8)
+		| cfg->ceiling.b;
 	y = 0;
 	while (y < WIN_HEIGHT)
 	{
@@ -70,18 +83,14 @@ int	render_frame(t_config *cfg)
 {
 	if (!cfg->mlx.win)
 		return (1);
-	
-	// Safety check: make sure textures are loaded
-	if (!cfg->tex_no.img || !cfg->tex_so.img || 
-		!cfg->tex_we.img || !cfg->tex_ea.img)
+	if (!cfg->tex_no.img || !cfg->tex_so.img
+		|| !cfg->tex_we.img || !cfg->tex_ea.img)
 	{
 		printf("Error: Textures not loaded\n");
 		return (1);
 	}
-
 	draw_floor_ceiling(cfg);
 	calculate_ray_casting(cfg);
 	mlx_put_image_to_window(cfg->mlx.mlx, cfg->mlx.win, cfg->mlx.img, 0, 0);
-
 	return (0);
 }

@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   setup.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/01 10:09:55 by moel-hai          #+#    #+#             */
+/*   Updated: 2026/01/01 10:09:55 by moel-hai         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 void	init_player_vectors(t_config *cfg)
 {
-    if (!cfg)
-        return;
+	if (!cfg)
+		return ;
 	if (cfg->player.dir == 'N')
 	{
 		cfg->player.dir_y = -1.0;
@@ -37,7 +49,7 @@ int	init_mlx(t_config *cfg)
 	cfg->mlx.img = mlx_new_image(cfg->mlx.mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (!cfg->mlx.img)
 		return (1);
-	cfg->mlx.addr = mlx_get_data_addr(cfg->mlx.img, 
+	cfg->mlx.addr = mlx_get_data_addr(cfg->mlx.img,
 			&cfg->mlx.bpp, &cfg->mlx.line_len, &cfg->mlx.endian);
 	if (!cfg->mlx.addr)
 		return (1);

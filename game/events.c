@@ -1,13 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   events.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/01 10:09:34 by moel-hai          #+#    #+#             */
+/*   Updated: 2026/01/01 10:09:34 by moel-hai         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 int	handle_close(t_config *cfg)
 {
-	// Clean up MLX resources (textures, images, window)
 	destroy_mlx(cfg);
-	
-	// Clean up everything else (map, strings, etc.)
 	free_everything(cfg->garbage, 0);
-	
 	exit(0);
 	return (0);
 }
@@ -16,9 +24,7 @@ int	handle_key_press(int keycode, t_config *cfg)
 {
 	if (keycode == ESC_KEY)
 	{
-		// Clean up MLX resources
 		destroy_mlx(cfg);
-		// Clean up everything else
 		free_everything(g_c(0, 0), 0);
 		exit(0);
 	}
@@ -34,10 +40,8 @@ int	handle_key_press(int keycode, t_config *cfg)
 		rotate_player(cfg, -0.05);
 	else if (keycode == RIGHT_ARROW)
 		rotate_player(cfg, 0.05);
-	
 	if (keycode == W_KEY || keycode == S_KEY || keycode == A_KEY
 		|| keycode == D_KEY || keycode == LEFT_ARROW || keycode == RIGHT_ARROW)
 		render_frame(cfg);
-	
 	return (0);
 }

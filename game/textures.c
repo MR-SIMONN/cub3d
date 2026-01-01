@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   textures.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/01 10:09:58 by moel-hai          #+#    #+#             */
+/*   Updated: 2026/01/01 10:26:12 by moel-hai         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 int	load_texture(char *path, t_texture_img *tex, void *mlx)
@@ -73,11 +85,11 @@ void	draw_textured_wall(t_config *cfg, t_ray *ray, int x)
 	int				y;
 
 	tex = select_texture(cfg, ray);
-	line_height = (int)(WIN_HEIGHT / (ray->perp_wall_dist / 64.0));
+	line_height = (int)(WIN_HEIGHT / (ray->perp_wall_dist / 64));
 	
 	// Calculate draw boundaries (unclamped for texture calculation)
-	draw_start = -line_height / 2 + WIN_HEIGHT / 2;
-	draw_end = line_height / 2 + WIN_HEIGHT / 2;
+	draw_start = WIN_HEIGHT / 2 - line_height / 2;
+	draw_end = WIN_HEIGHT / 2 + line_height / 2;
 	
 	// Get texture X coordinate
 	tex_x = (int)(calculate_wall_x(cfg, ray) * (double)tex->width);
