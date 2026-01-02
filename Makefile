@@ -1,14 +1,11 @@
-NAME        = cub3d
-
+NAME        = cub3D
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror
-
 MLX_DIR     = mlx_linux
 MLX_LIB     = -L$(MLX_DIR) -lmlx -lX11 -lXext -lm
 MLX_INC     = -I$(MLX_DIR)
-
 SRCS        = cub3d.c \
-              utils/cleanup/cleanup.c \
+              utils/cleanup/config_setup.c \
 			  utils/cleanup/destroy_tex.c \
               utils/cleanup/trash_can.c \
               utils/cleanup/utils.c \
@@ -27,6 +24,9 @@ SRCS        = cub3d.c \
               game/setup.c \
 			  game/textures.c
 
+
+
+
 OBJS        = $(SRCS:.c=.o)
 
 all: $(NAME)
@@ -38,9 +38,11 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(MLX_INC) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	@rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re

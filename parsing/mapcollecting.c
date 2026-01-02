@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mapcollecting.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielouarr <ielouarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 15:34:18 by ielouarr          #+#    #+#             */
-/*   Updated: 2025/12/22 16:42:00 by ielouarr         ###   ########.fr       */
+/*   Updated: 2026/01/01 20:39:26 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,7 +212,7 @@ int tcollect(t_config *cfg)
 				cfg->player.dir = cfg->map.grid[i][j];
 				return 0;
 			}
-			j++;	
+			j++;
 		}
 		i++;
 	}

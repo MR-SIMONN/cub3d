@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   events.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/01 10:09:34 by moel-hai          #+#    #+#             */
+/*   Updated: 2026/01/01 10:09:34 by moel-hai         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 int	handle_close(t_config *cfg)
 {
-	printf ("everything got freed and deastroyed\n\n");
 	destroy_mlx(cfg);
 	free_everything(cfg->garbage, 0);
 	exit(0);
@@ -11,7 +22,6 @@ int	handle_close(t_config *cfg)
 
 int	handle_key_press(int keycode, t_config *cfg)
 {
-	printf ("handle keypreess got called\n\n");
 	if (keycode == ESC_KEY)
 	{
 		destroy_mlx(cfg);
@@ -35,7 +45,6 @@ int	handle_key_press(int keycode, t_config *cfg)
 
 int	handle_key_release(int keycode, t_config *cfg)
 {
-	printf ("handle key releass got called\n\n");
 	if (keycode == W_KEY)
 		cfg->key.w = 0;
 	else if (keycode == S_KEY)
@@ -50,4 +59,3 @@ int	handle_key_release(int keycode, t_config *cfg)
 		cfg->key.right = 0;
 	return (0);
 }
-

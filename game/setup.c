@@ -1,11 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   setup.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/01 10:09:55 by moel-hai          #+#    #+#             */
+/*   Updated: 2026/01/01 10:09:55 by moel-hai         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 void	init_player_vectors(t_config *cfg)
 {
-    if (!cfg)
-        {
-			return;
-		}
+	if (!cfg)
+		return ;
 	if (cfg->player.dir == 'N')
 	{
 		cfg->player.dir_y = -1.0;
@@ -39,7 +49,7 @@ int	init_mlx(t_config *cfg)
 	cfg->mlx.img = mlx_new_image(cfg->mlx.mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (!cfg->mlx.img)
 		return (1);
-	cfg->mlx.addr = mlx_get_data_addr(cfg->mlx.img, 
+	cfg->mlx.addr = mlx_get_data_addr(cfg->mlx.img,
 			&cfg->mlx.bpp, &cfg->mlx.line_len, &cfg->mlx.endian);
 	if (!cfg->mlx.addr)
 		return (1);
@@ -55,8 +65,8 @@ void	init_ray_data(t_config *cfg, t_ray *ray, int x)
 	ray->ray_dir_y = cfg->player.dir_y + cfg->player.plane_y * camera_x;
 	ray->map_x = (int)(cfg->player.x / 64);
 	ray->map_y = (int)(cfg->player.y / 64);
-	ray->delta_dist_x = fabs(64.0 / ray->ray_dir_x);
-	ray->delta_dist_y = fabs(64.0 / ray->ray_dir_y);
+	ray->delta_dist_x = fabs(64 / ray->ray_dir_x);
+	ray->delta_dist_y = fabs(64 / ray->ray_dir_y);
 }
 
 void	init_step_sidedist(t_config *cfg, t_ray *ray)
@@ -66,34 +76,24 @@ void	init_step_sidedist(t_config *cfg, t_ray *ray)
 	{
 		ray->step_x = -1;
 		ray->side_dist_x = (cfg->player.x - ray->map_x * 64)
-			* ray->delta_dist_x / 64.0;
+			* ray->delta_dist_x / 64;
 	}
 	else
 	{
 		ray->step_x = 1;
 		ray->side_dist_x = (ray->map_x * 64 + 64 - cfg->player.x)
-			* ray->delta_dist_x / 64.0;
+			* ray->delta_dist_x / 64;
 	}
 	if (ray->ray_dir_y < 0)
 	{
 		ray->step_y = -1;
 		ray->side_dist_y = (cfg->player.y - ray->map_y * 64)
-			* ray->delta_dist_y / 64.0;
+			* ray->delta_dist_y / 64;
 	}
 	else
 	{
 		ray->step_y = 1;
 		ray->side_dist_y = (ray->map_y * 64 + 64 - cfg->player.y)
-			* ray->delta_dist_y / 64.0;
+			* ray->delta_dist_y / 64;
 	}
-}
-
-void	init_keys(t_config *cfg)
-{
-	cfg->key.a = 0;
-	cfg->key.w = 0;
-	cfg->key.d = 0;
-	cfg->key.s = 0;
-	cfg->key.left = 0;
-	cfg->key.right = 0;
 }

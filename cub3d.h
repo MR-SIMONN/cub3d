@@ -6,7 +6,7 @@
 /*   By: mihowk <mihowk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:34:13 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/01 08:05:31 by mihowk           ###   ########.fr       */
+/*   Updated: 2026/01/02 13:30:39 by mihowk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 #define WIN_WIDTH  1280
 #define WIN_HEIGHT 720
 #define PLAYER_SPEED 4
+#define ROTATION_SPEED 0.05
 #define FOV	0.66
 #define ESC_KEY 65307
 #define W_KEY 119
@@ -37,13 +38,6 @@
 #define D_KEY 100
 #define LEFT_ARROW 65361
 #define RIGHT_ARROW 65363
-// #define ESC_KEY 53
-// #define W_KEY   13
-// #define A_KEY   0
-// #define S_KEY   1
-// #define D_KEY   2
-// #define LEFT_ARROW 123
-// #define RIGHT_ARROW 124
 #define CLOSE_BUTTON 17
 
 
@@ -183,7 +177,6 @@ double	calculate_wall_x(t_config *cfg, t_ray *ray);
 
 int		run_game(t_config *configs);
 void	init_player_vectors(t_config *cfg);
-void	init_keys(t_config *cfg);
 int		init_mlx(t_config *cfg);
 void	init_ray_data(t_config *cfg, t_ray *ray, int x);
 void	init_step_sidedist(t_config *cfg, t_ray *ray);
