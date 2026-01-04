@@ -1,13 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   events.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/01 10:09:34 by moel-hai          #+#    #+#             */
+/*   Updated: 2026/01/01 10:09:34 by moel-hai         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 int	handle_close(t_config *cfg)
 {
-	// Clean up MLX resources (textures, images, window)
 	destroy_mlx(cfg);
-	
-	// Clean up everything else (map, strings, etc.)
 	free_everything(cfg->garbage, 0);
-	
 	exit(0);
 	return (0);
 }
@@ -16,28 +24,38 @@ int	handle_key_press(int keycode, t_config *cfg)
 {
 	if (keycode == ESC_KEY)
 	{
-		// Clean up MLX resources
 		destroy_mlx(cfg);
-		// Clean up everything else
 		free_everything(g_c(0, 0), 0);
 		exit(0);
 	}
 	else if (keycode == W_KEY)
-		move_player(cfg, cfg->player.dir_x, cfg->player.dir_y);
+		cfg->key.w = 1;
 	else if (keycode == S_KEY)
-		move_player(cfg, -cfg->player.dir_x, -cfg->player.dir_y);
+		cfg->key.s = 1;
 	else if (keycode == D_KEY)
-		move_player(cfg, cfg->player.plane_x, cfg->player.plane_y);
+		cfg->key.d = 1;
 	else if (keycode == A_KEY)
-		move_player(cfg, -cfg->player.plane_x, -cfg->player.plane_y);
+		cfg->key.a = 1;
 	else if (keycode == LEFT_ARROW)
-		rotate_player(cfg, -0.05);
+		cfg->key.left = 1;
 	else if (keycode == RIGHT_ARROW)
-		rotate_player(cfg, 0.05);
-	
-	if (keycode == W_KEY || keycode == S_KEY || keycode == A_KEY
-		|| keycode == D_KEY || keycode == LEFT_ARROW || keycode == RIGHT_ARROW)
-		render_frame(cfg);
-	
+		cfg->key.right = 1;
+	return (0);
+}
+
+int	handle_key_release(int keycode, t_config *cfg)
+{
+	if (keycode == W_KEY)
+		cfg->key.w = 0;
+	else if (keycode == S_KEY)
+		cfg->key.s = 0;
+	else if (keycode == D_KEY)
+		cfg->key.d = 0;
+	else if (keycode == A_KEY)
+		cfg->key.a = 0;
+	else if (keycode == LEFT_ARROW)
+		cfg->key.left = 0;
+	else if (keycode == RIGHT_ARROW)
+		cfg->key.right = 0;
 	return (0);
 }

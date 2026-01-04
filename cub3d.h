@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielouarr <ielouarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mihowk <mihowk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:34:13 by ielouarr          #+#    #+#             */
-/*   Updated: 2025/12/25 19:25:38 by ielouarr         ###   ########.fr       */
+/*   Updated: 2026/01/04 09:55:50 by mihowk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 #define WIN_WIDTH  1280
 #define WIN_HEIGHT 720
 #define PLAYER_SPEED 4
+#define ROTATION_SPEED 0.05
 #define FOV	0.66
 #define ESC_KEY 53
 #define W_KEY   13
@@ -49,6 +50,16 @@ typedef struct s_heap
 }	t_heap;
 
 //structs
+
+typedef struct s_keys
+{
+	int	a;
+	int	d;
+	int	w;
+	int	s;
+	int	right;
+	int	left;
+}	t_keys;
 
 typedef struct s_color {
 	int r;
@@ -116,18 +127,29 @@ typedef struct s_ray {
 }	t_ray;
 
 typedef struct s_config {
-	t_texture   textures;      // paths to textures
-	t_texture_img	tex_no;    // north texture image
-	t_texture_img	tex_so;    // south texture image
-	t_texture_img	tex_we;    // west texture image
-	t_texture_img	tex_ea;    // east texture image
+	t_texture   textures;
+	t_texture_img	tex_no;
+	t_texture_img	tex_so;
+	t_texture_img	tex_we;
+	t_texture_img	tex_ea;
 	t_color     floor;
 	t_color     ceiling;
 	t_map       map;
 	t_player    player;
 	t_mlx       mlx;
+	t_keys		key;
 	t_heap		*garbage; 
 } t_config;
+
+
+typedef struct s_tex_par
+{
+	int			fd;
+	int			tex_total;
+	int			dup[6];
+	char		**map_extract;
+	t_config	*cfg;
+}	t_tex_par;
 
 
 //parsing funcs
@@ -148,6 +170,16 @@ int		ft_atoi(const char *str);
 char	*ft_itoa(int n, t_config *cfg);
 char	*remove_backslash_n(char *line, t_config *cfg);
 void	init_config(t_config *config);
+char	**mapextracting(char *line, int fd, t_config *cfg);
+int		count_tex(char *line, int *tex_total, int *dup);
+int		check_texture_filename(char *line);
+int		check_rgb(char *line);
+int		checkmap(char **map);
+char	**check_textures(char *map, t_config *cfg);
+int		collecttextures(t_config *cfg, char *line, int j);
+char	**collectmap(char *line, int fd, t_config *cfg);
+int		handle_line(char *line, t_tex_par *ctx);
+int		fcollect(char *mapfile, t_config *cfg);
 
 // textures funcs 
 
@@ -159,7 +191,6 @@ void	destroy_all_textures(t_config *cfg);
 void	destroy_mlx(t_config *cfg);
 void	draw_textured_wall(t_config *cfg, t_ray *ray, int x);
 t_texture_img	*select_texture(t_config *cfg, t_ray *ray);
-double	calculate_wall_x(t_config *cfg, t_ray *ray);
 
 //ray_casting funcs
 
@@ -169,12 +200,13 @@ int		init_mlx(t_config *cfg);
 void	init_ray_data(t_config *cfg, t_ray *ray, int x);
 void	init_step_sidedist(t_config *cfg, t_ray *ray);
 int		render_frame(t_config *cfg);
+int		keys_update(t_config *cfg);
 int		handle_key_press(int keycode, t_config *cfg);
+int		handle_key_release(int keycode, t_config *cfg);
 int		handle_close(t_config *cfg);
 void    move_player(t_config *cfg, double dir_x, double dir_y);
 void    rotate_player(t_config *cfg, double rot_speed);
 void	put_pixel_to_img(t_mlx *mlx, int x, int y, int color);
-void	draw_wall_slice(t_config *cfg, t_ray *ray, int x);
 
 //garbage_collector funcs
 
