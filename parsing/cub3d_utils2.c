@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielouarr <ielouarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 19:56:27 by ielouarr          #+#    #+#             */
-/*   Updated: 2025/11/25 12:17:44 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/01 15:25:03 by ielouarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_atoi(const char *str)
 {
-	int					i;
-	int					sign;
-	int	                n;
+	int	i;
+	int	sign;
+	int	n;
 
 	i = 0;
 	sign = 1;

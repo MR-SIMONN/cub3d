@@ -13,7 +13,7 @@ void	destroy_texture(t_texture_img *tex, void *mlx)
 void	destroy_all_textures(t_config *cfg)
 {
 	if (!cfg->mlx.mlx)
-		return;
+		return ;
 	destroy_texture(&cfg->tex_no, cfg->mlx.mlx);
 	destroy_texture(&cfg->tex_so, cfg->mlx.mlx);
 	destroy_texture(&cfg->tex_we, cfg->mlx.mlx);
@@ -23,8 +23,7 @@ void	destroy_all_textures(t_config *cfg)
 void	destroy_mlx(t_config *cfg)
 {
 	if (!cfg->mlx.mlx)
-		return;
-
+		return ;
 	destroy_all_textures(cfg);
 	if (cfg->mlx.img)
 	{
