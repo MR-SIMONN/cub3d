@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 17:34:10 by moel-hai          #+#    #+#             */
-/*   Updated: 2025/11/25 12:19:19 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/05 20:35:04 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,6 @@ void	*ft_malloc(size_t size, t_config *d)
 	p->address = allocated;
 	p->next = NULL;
 	ft_lstadd_front(&d->garbage, p);
-    g_c(1, d->garbage);
+	g_c(1, d->garbage);
 	return (allocated);
 }

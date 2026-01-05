@@ -16,12 +16,24 @@ void	move_player(t_config *cfg, double dir_x, double dir_y)
 {
 	double	new_x;
 	double	new_y;
+	double	move_x_padding;
+	double	move_y_padding;
 
 	new_x = cfg->player.x + dir_x * PLAYER_SPEED;
 	new_y = cfg->player.y + dir_y * PLAYER_SPEED;
-	if (cfg->map.grid[(int)(new_y / 64)][(int)(cfg->player.x / 64)] != '1')
+	if (dir_x > 0)
+		move_x_padding = 10;
+	else
+		move_x_padding = -10;
+	if (dir_y > 0)
+		move_y_padding = 10;
+	else
+		move_y_padding = -10;
+	if (cfg->map.grid[(int)((new_y + move_y_padding) / 64)]
+			[(int)(cfg->player.x / 64)] != '1')
 		cfg->player.y = new_y;
-	if (cfg->map.grid[(int)(cfg->player.y / 64)][(int)(new_x / 64)] != '1')
+	if (cfg->map.grid[(int)(cfg->player.y / 64)]
+			[(int)((new_x + move_x_padding) / 64)] != '1')
 		cfg->player.x = new_x;
 }
 
