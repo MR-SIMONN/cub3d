@@ -6,11 +6,20 @@
 /*   By: mihowk <mihowk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 17:30:00 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/04 10:17:02 by mihowk           ###   ########.fr       */
+/*   Updated: 2026/01/04 22:14:12 by mihowk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
+
+t_config	*configs(int should_update,	t_config *new_value)
+{
+	static t_config	*h;
+
+	if (should_update)
+		h = new_value;
+	return (h);
+}
 
 void	init_config(t_config *config)
 {
@@ -37,4 +46,5 @@ void	init_config(t_config *config)
 	config->player.plane_x = 0;
 	config->player.plane_y = 0;
 	config->garbage = NULL;
+	configs(1, config);
 }

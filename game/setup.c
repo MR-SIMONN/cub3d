@@ -43,7 +43,7 @@ int	init_mlx(t_config *cfg)
 	cfg->mlx.mlx = mlx_init();
 	if (!cfg->mlx.mlx)
 		return (1);
-	cfg->mlx.win = mlx_new_window(cfg->mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3d");
+	cfg->mlx.win = mlx_new_window(cfg->mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
 	if (!cfg->mlx.win)
 		return (1);
 	cfg->mlx.img = mlx_new_image(cfg->mlx.mlx, WIN_WIDTH, WIN_HEIGHT);

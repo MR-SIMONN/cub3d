@@ -16,7 +16,6 @@ int	handle_close(t_config *cfg)
 {
 	destroy_mlx(cfg);
 	free_everything(cfg->garbage, 0);
-	exit(0);
 	return (0);
 }
 
@@ -26,7 +25,6 @@ int	handle_key_press(int keycode, t_config *cfg)
 	{
 		destroy_mlx(cfg);
 		free_everything(g_c(0, 0), 0);
-		exit(0);
 	}
 	else if (keycode == W_KEY)
 		cfg->key.w = 1;
