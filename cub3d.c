@@ -6,7 +6,7 @@
 /*   By: mihowk <mihowk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:30:21 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/04 10:12:57 by mihowk           ###   ########.fr       */
+/*   Updated: 2026/01/05 04:24:35 by mihowk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int	main(int ac, char **av)
 		return (printf("Cub3d : invalid map"), 1);
 	}
 	run_game(&configs);
-	destroy_mlx(&configs);
 	free_everything(g_c(0, 0), -1);
 	return (0);
 }
