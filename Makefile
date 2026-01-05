@@ -27,11 +27,10 @@ SRCS = cub3d.c \
         game/player_movement.c \
         game/render.c \
         game/setup.c \
-		game/textures.c
+		game/textures.c \
+		game/texture_draw.c
 
 OBJS = $(SRCS:.c=.o)
-
-
 
 all: $(NAME)
 
