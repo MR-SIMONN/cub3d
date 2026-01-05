@@ -6,7 +6,7 @@
 /*   By: mihowk <mihowk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:34:13 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/04 09:55:50 by mihowk           ###   ########.fr       */
+/*   Updated: 2026/01/04 22:13:37 by mihowk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,8 +210,9 @@ void	put_pixel_to_img(t_mlx *mlx, int x, int y, int color);
 
 //garbage_collector funcs
 
-void	free_everything(t_heap *h, int exit);
-void	*ft_malloc(size_t size, t_config *d);
-t_heap	*g_c(int should_update,	t_heap *new_value);
+void		free_everything(t_heap *h, int exit);
+void		*ft_malloc(size_t size, t_config *d);
+t_heap		*g_c(int should_update,	t_heap *new_value);
+t_config	*configs(int should_update,	t_config *new_value);
 
 #endif

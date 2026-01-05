@@ -6,7 +6,7 @@
 /*   By: mihowk <mihowk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 17:20:48 by moel-hai          #+#    #+#             */
-/*   Updated: 2026/01/04 10:19:07 by mihowk           ###   ########.fr       */
+/*   Updated: 2026/01/04 22:16:32 by mihowk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	free_everything(t_heap *h, int exit_value)
 	if (!h)
 		return ;
 	close_fds();
+	destroy_mlx(configs(0, 0));
 	clear_trash(h);
 	if (exit_value >= 0)
 		exit (exit_value);
