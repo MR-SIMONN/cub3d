@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mihowk <mihowk@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ielouarr <ielouarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:30:21 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/05 04:24:35 by mihowk           ###   ########.fr       */
+/*   Updated: 2026/01/05 19:04:45 by ielouarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	gettofilename(char *line, int *i, int *j)
+{
+	if (!line)
+		return (0);
+	if (ft_strlen(line) < 5)
+		return (0);
+	*i = 2;
+	while (line[*i] && (line[*i] == ' ' || line[*i] == '\t'))
+		(*i)++;
+	if (!line[*i] || line[*i] == '\n')
+		return (0);
+	*j = *i;
+	while (line[*j] && line[*j] != ' ' && line[*j] != '\t'
+		&& line[*j] != '\n')
+		(*j)++;
+	return (1);
+}
 
 int	check_cub3d_filename(char *line)
 {
@@ -18,18 +36,8 @@ int	check_cub3d_filename(char *line)
 	int	j;
 	int	fname_len;
 
-	if (!line)
+	if (!gettofilename(line, &i, &j))
 		return (0);
-	if (ft_strlen(line) < 8)
-		return (0);
-	i = 2;
-	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
-		i++;
-	if (!line[i] || line[i] == '\n')
-		return (0);
-	j = i;
-	while (line[j] && line[j] != ' ' && line[j] != '\t' && line[j] != '\n')
-		j++;
 	fname_len = j - i;
 	if (fname_len < 4)
 		return (0);
@@ -45,11 +53,10 @@ int	check_cub3d_filename(char *line)
 	return (1);
 }
 
-int	main(int ac, char **av)
+int	parsing(int ac, char **av, t_config *configs)
 {
-	t_config	configs;
-	int			fd;
-	int			ret;
+	int	ret;
+	int	fd;
 
 	if (ac != 2)
 		return (printf("Cub3d : Invalid args [./cub3d your_map]"), 1);
@@ -59,15 +66,25 @@ int	main(int ac, char **av)
 	if (fd < 0)
 		return (printf("Cub3d : can't access the file map"), 1);
 	close(fd);
-	init_config(&configs);
-	if (check_validmap(av[1], &configs))
-		return (printf("Cub3d : invalid map"), free_everything(g_c(0, 0), -1), 1);
-	ret = mapcollecting(&configs, av[1]);
+	init_config(configs);
+	if (check_validmap(av[1], configs))
+		return (printf("Cub3d : invalid map"),
+			free_everything(g_c(0, 0), -1), 1);
+	ret = mapcollecting(configs, av[1]);
 	if (ret)
 	{
 		free_everything(g_c(0, 0), -1);
 		return (printf("Cub3d : invalid map"), 1);
 	}
+	return (0);
+}
+
+int	main(int ac, char **av)
+{
+	t_config	configs;
+
+	if (parsing(ac, av, &configs))
+		return (1);
 	run_game(&configs);
 	free_everything(g_c(0, 0), -1);
 	return (0);

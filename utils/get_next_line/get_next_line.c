@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ielouarr <ielouarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 16:12:30 by ielouarr          #+#    #+#             */
-/*   Updated: 2025/11/25 12:20:11 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/05 16:44:05 by ielouarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,19 @@ static char	*ft_read(int fd, char *buffer, char *storage)
 	ssize_t	bytes;
 	char	*temp;
 
-	while ((bytes = read(fd, buffer, BUFFER_SIZE)) > 0)
+	bytes = read(fd, buffer, BUFFER_SIZE);
+	while (bytes > 0)
 	{
 		buffer[bytes] = '\0';
-		temp = storage ? ft_strjoin(storage, buffer) : ft_strdup(buffer);
+		if (storage)
+			temp = ft_strjoin(storage, buffer);
+		else
+			temp = ft_strdup(buffer);
 		free(storage);
 		storage = temp;
 		if (ft_strchr(storage, '\n'))
 			break ;
+		bytes = read(fd, buffer, BUFFER_SIZE);
 	}
 	if (bytes < 0)
 	{
@@ -36,9 +41,10 @@ static char	*ft_read(int fd, char *buffer, char *storage)
 
 static char	*ft_get_line(char *storage)
 {
-	int		len = 0;
+	int		len;
 	char	*line;
 
+	len = 0;
 	if (!storage || !*storage)
 		return (NULL);
 	while (storage[len] && storage[len] != '\n')
@@ -51,17 +57,24 @@ static char	*ft_get_line(char *storage)
 
 static char	*ft_update_storage(char *storage)
 {
-	int		len = 0;
+	int		len;
 	char	*new_storage;
 
+	len = 0;
 	while (storage[len] && storage[len] != '\n')
 		len++;
 	if (storage[len] == '\0')
-		return (free(storage), NULL);
+	{
+		free(storage);
+		return (NULL);
+	}
 	new_storage = ft_strdup(storage + len + 1);
 	free(storage);
 	if (!*new_storage)
-		return (free(new_storage), NULL);
+	{
+		free(new_storage);
+		return (NULL);
+	}
 	return (new_storage);
 }
 
