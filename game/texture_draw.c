@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 21:19:42 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/05 22:18:41 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/05 22:27:09 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	adjust_draw_bounds(int *draw_start, int *draw_end,
 }
 
 void	draw_wall_column(t_config *cfg, t_texture_img *tex,
-		int tex_x, int x, t_draw_params *params)
+		int tex_x, t_draw_params *params)
 {
 	int		y;
 	int		tex_y;
@@ -48,7 +48,7 @@ void	draw_wall_column(t_config *cfg, t_texture_img *tex,
 		tex_y = (int)params->tex_pos;
 		if (tex_y >= tex->height)
 			tex_y = tex->height - 1;
-		put_pixel_to_img(&cfg->mlx, x, y,
+		put_pixel_to_img(&cfg->mlx, params->x, y,
 			get_texture_pixel(tex, tex_x, tex_y));
 		params->tex_pos += params->step;
 		y++;
@@ -62,6 +62,7 @@ void	draw_textured_wall(t_config *cfg, t_ray *ray, int x)
 	t_draw_params	params;
 	int				tex_x;
 
+	params.x = x;
 	tex = select_texture(cfg, ray);
 	line_height = calculate_line_height(ray);
 	calculate_draw_bounds(line_height, &params.draw_start, &params.draw_end);
@@ -70,5 +71,5 @@ void	draw_textured_wall(t_config *cfg, t_ray *ray, int x)
 	params.tex_pos = 0;
 	adjust_draw_bounds(&params.draw_start, &params.draw_end,
 		&params.tex_pos, params.step);
-	draw_wall_column(cfg, tex, tex_x, x, &params);
+	draw_wall_column(cfg, tex, tex_x, &params);
 }

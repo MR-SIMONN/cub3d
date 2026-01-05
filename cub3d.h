@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:34:13 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/05 22:11:52 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/05 22:25:29 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,7 @@ typedef struct s_draw_params
 	int		draw_end;
 	double	tex_pos;
 	double	step;
+	int		x;
 }	t_draw_params;
 
 typedef struct s_tex_par
