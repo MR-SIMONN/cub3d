@@ -18,10 +18,7 @@ int	run_game(t_config *configs)
 	if (init_mlx(configs))
 		free_everything(g_c(0, 0), 1, 0);
 	if (load_all_textures(configs))
-	{
-		printf("Error: Failed to load textures\n");
 		free_everything(g_c(0, 0), 1, 1);
-	}
 	mlx_hook (configs->mlx.win, 2, 0, handle_key_press, configs);
 	mlx_hook (configs->mlx.win, 3, 0, handle_key_release, configs);
 	mlx_hook (configs->mlx.win, 17, 0, handle_close, configs);

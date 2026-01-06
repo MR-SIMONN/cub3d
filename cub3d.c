@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:30:21 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/06 16:12:58 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/06 16:53:05 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,16 @@ int	gettofilename(char *line, int *i, int *j)
 {
 	if (!line)
 		return (0);
-	if (ft_strlen(line) < 5)
-		return (0);
 	*i = 2;
 	while (line[*i] && (line[*i] == ' ' || line[*i] == '\t'))
 		(*i)++;
 	if (!line[*i] || line[*i] == '\n')
 		return (0);
 	*j = *i;
-	while (line[*j] && line[*j] != ' ' && line[*j] != '\t'
-		&& line[*j] != '\n')
+	while (line[*j] && line[*j] != '\n')
 		(*j)++;
+	while (*j > *i && (line[*j - 1] == ' ' || line[*j - 1] == '\t'))
+		(*j)--;
 	return (1);
 }
 
@@ -59,22 +58,22 @@ int	parsing(int ac, char **av, t_config *configs)
 	int	fd;
 
 	if (ac != 2)
-		return (printf("Cub3d : Invalid args [./cub3d your_map]"), 1);
+		return (printf("Error\nCub3d : Invalid args [./cub3d your_map]"), 1);
 	if (!check_cub3d_filename(av[1]))
-		return (printf("Cub3d : Wrong map name [your_map`.cub`]"), 1);
+		return (printf("Error\nCub3d : Wrong map name [your_map`.cub`]"), 1);
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
-		return (printf("Cub3d : can't access the file map"), 1);
+		return (printf("Error\nCub3d : can't access the file map"), 1);
 	close(fd);
 	init_config(configs);
 	if (check_validmap(av[1], configs))
-		return (printf("Cub3d : invalid map"),
+		return (printf("Error\nCub3d : invalid map"),
 			free_everything(g_c(0, 0), -1, 0), 1);
 	ret = mapcollecting(configs, av[1]);
 	if (ret)
 	{
 		free_everything(g_c(0, 0), -1, 0);
-		return (printf("Cub3d : invalid map"), 1);
+		return (printf("Error\nCub3d : invalid map"), 1);
 	}
 	return (0);
 }

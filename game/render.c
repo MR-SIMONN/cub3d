@@ -81,14 +81,6 @@ void	draw_floor_ceiling(t_config *cfg)
 
 int	render_frame(t_config *cfg)
 {
-	if (!cfg->mlx.win)
-		return (1);
-	if (!cfg->tex_no.img || !cfg->tex_so.img
-		|| !cfg->tex_we.img || !cfg->tex_ea.img)
-	{
-		printf("Error: Textures not loaded\n");
-		return (1);
-	}
 	keys_update(cfg);
 	draw_floor_ceiling(cfg);
 	calculate_ray_casting(cfg);
