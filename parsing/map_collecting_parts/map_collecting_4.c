@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_collecting_4.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielouarr <ielouarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 20:53:53 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/03 20:57:27 by ielouarr         ###   ########.fr       */
+/*   Updated: 2026/01/06 16:01:29 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,9 @@ int	fcollect(char *mapfile, t_config *cfg)
 	{
 		ret = process_line(line, fd, cfg);
 		if (ret == 1)
-			return (free(line), 1);
+			return (1);
 		if (ret == 2)
-			return (free(line), 0);
-		free(line);
+			return (0);
 		line = get_next_line(fd);
 	}
 	return (1);

@@ -1,6 +1,6 @@
 NAME        = cub3D
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -fsanitize=address
+CFLAGS      = -Wall -Wextra -Werror
 MLX = -lmlx -framework OpenGL -framework AppKit
 SRCS = cub3d.c \
         utils/cleanup/config_setup.c \

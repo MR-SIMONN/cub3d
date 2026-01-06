@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielouarr <ielouarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 19:57:33 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/01 20:17:36 by ielouarr         ###   ########.fr       */
+/*   Updated: 2026/01/06 16:01:05 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static int	read_texture_lines(t_tex_par *ctx)
 	while (line)
 	{
 		ret = handle_line(line, ctx);
-		free(line);
 		if (ret == 0)
 		{
 			line = get_next_line(ctx->fd);

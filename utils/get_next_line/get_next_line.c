@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielouarr <ielouarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 16:12:30 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/05 16:44:05 by ielouarr         ###   ########.fr       */
+/*   Updated: 2026/01/06 16:02:08 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,13 @@ static char	*ft_read(int fd, char *buffer, char *storage)
 			temp = ft_strjoin(storage, buffer);
 		else
 			temp = ft_strdup(buffer);
-		free(storage);
 		storage = temp;
 		if (ft_strchr(storage, '\n'))
 			break ;
 		bytes = read(fd, buffer, BUFFER_SIZE);
 	}
 	if (bytes < 0)
-	{
-		free(storage);
 		return (NULL);
-	}
 	return (storage);
 }
 
@@ -64,17 +60,10 @@ static char	*ft_update_storage(char *storage)
 	while (storage[len] && storage[len] != '\n')
 		len++;
 	if (storage[len] == '\0')
-	{
-		free(storage);
 		return (NULL);
-	}
 	new_storage = ft_strdup(storage + len + 1);
-	free(storage);
 	if (!*new_storage)
-	{
-		free(new_storage);
 		return (NULL);
-	}
 	return (new_storage);
 }
 
@@ -86,11 +75,8 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer = malloc(BUFFER_SIZE + 1);
-	if (!buffer)
-		return (NULL);
+	buffer = ft_malloc(BUFFER_SIZE + 1, configs(0, 0));
 	storage = ft_read(fd, buffer, storage);
-	free(buffer);
 	if (!storage)
 		return (NULL);
 	line = ft_get_line(storage);

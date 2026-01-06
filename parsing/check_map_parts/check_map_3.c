@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 19:55:55 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/06 15:03:09 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/06 16:34:51 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	regularmapcheck(char **map, int *i, int *player_counter)
 	{
 		if (map[*i][j] != 'N' && map[*i][j] != 'S' && map[*i][j] != 'W'
 			&& map[*i][j] != 'E' && map[*i][j] != '0' && map[*i][j] != '1'
-			 && map[*i][j] != ' ')
+			&& map[*i][j] != ' ')
 			return (1);
 		if (map[*i][j] == 'N' || map[*i][j] == 'S' || map[*i][j] == 'W'
 			|| map[*i][j] == 'E')

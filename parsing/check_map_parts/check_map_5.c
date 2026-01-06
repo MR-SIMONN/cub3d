@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 20:05:03 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/06 15:37:39 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/06 16:35:07 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	check_rgb(char *line)
 	i = 2;
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
-	while(line[i] == '0')
+	while (line[i] == '0')
 		i++;
 	component = 0;
 	if (!regularcheck(line, &i, &component))

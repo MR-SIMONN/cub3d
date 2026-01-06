@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 17:30:00 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/05 20:34:56 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/06 15:54:37 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,22 @@ t_config	*configs(int should_update,	t_config *new_value)
 	if (should_update)
 		h = new_value;
 	return (h);
+}
+
+void	init_more(t_config *cfg)
+{
+	cfg->mlx.mlx = NULL;
+	cfg->mlx.win = NULL;
+	cfg->mlx.img = NULL;
+	cfg->mlx.addr = NULL;
+	cfg->tex_no.img = NULL;
+	cfg->tex_so.img = NULL;
+	cfg->tex_we.img = NULL;
+	cfg->tex_ea.img = NULL;
+	cfg->tex_no.addr = NULL;
+	cfg->tex_so.addr = NULL;
+	cfg->tex_we.addr = NULL;
+	cfg->tex_ea.addr = NULL;
 }
 
 void	init_config(t_config *config)
@@ -46,5 +62,6 @@ void	init_config(t_config *config)
 	config->player.plane_x = 0;
 	config->player.plane_y = 0;
 	config->garbage = NULL;
+	init_more(config);
 	configs(1, config);
 }

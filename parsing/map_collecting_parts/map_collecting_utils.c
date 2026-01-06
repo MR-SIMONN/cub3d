@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 19:39:49 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/06 15:37:32 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/06 16:35:15 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	subone(int *component, char *rgbline, int *i)
 	*component = 0;
 	while (rgbline[*i] == 32 || rgbline[*i] == 9)
 		(*i)++;
-	while(rgbline[*i] == '0')
+	while (rgbline[*i] == '0')
 		(*i)++;
 }
 

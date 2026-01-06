@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielouarr <ielouarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 17:05:39 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/05 16:44:51 by ielouarr         ###   ########.fr       */
+/*   Updated: 2026/01/06 15:58:38 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,8 @@ char	*ft_strdup(char *s)
 	size_t	i;
 
 	len = ft_strlen(s);
-	dup = malloc(len + 1);
+	dup = ft_malloc(len + 1, configs(0, 0));
 	i = 0;
-	if (!dup)
-		return (NULL);
 	while (i < len)
 	{
 		dup[i] = s[i];
@@ -55,11 +53,9 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
-	res = malloc(len1 + len2 + 1);
+	res = ft_malloc(len1 + len2 + 1, configs(0, 0));
 	i = 0;
 	j = 0;
-	if (!res)
-		return (NULL);
 	while (i < len1)
 	{
 		res[i] = s1[i];
@@ -83,9 +79,7 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 		return (ft_strdup(""));
 	if (len > slen - start)
 		len = slen - start;
-	sub = malloc(len + 1);
-	if (!sub)
-		return (NULL);
+	sub = ft_malloc(len + 1, configs(0, 0));
 	while (i < len)
 	{
 		sub[i] = s[start + i];
