@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:34:13 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/05 22:25:29 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/06 15:19:11 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,7 +209,7 @@ int				handle_close(t_config *cfg);
 void			move_player(t_config *cfg, double dir_x, double dir_y);
 void			rotate_player(t_config *cfg, double rot_speed);
 void			put_pixel_to_img(t_mlx *mlx, int x, int y, int color);
-void			free_everything(t_heap *h, int exit);
+void			free_everything(t_heap *h, int exit_value, int _destroy_mlx);
 void			*ft_malloc(size_t size, t_config *d);
 t_heap			*g_c(int should_update,	t_heap *new_value);
 t_config		*configs(int should_update,	t_config *new_value);

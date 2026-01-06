@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielouarr <ielouarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:30:21 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/05 19:04:45 by ielouarr         ###   ########.fr       */
+/*   Updated: 2026/01/06 15:20:15 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,11 @@ int	parsing(int ac, char **av, t_config *configs)
 	init_config(configs);
 	if (check_validmap(av[1], configs))
 		return (printf("Cub3d : invalid map"),
-			free_everything(g_c(0, 0), -1), 1);
+			free_everything(g_c(0, 0), -1, 0), 1);
 	ret = mapcollecting(configs, av[1]);
 	if (ret)
 	{
-		free_everything(g_c(0, 0), -1);
+		free_everything(g_c(0, 0), -1, 0);
 		return (printf("Cub3d : invalid map"), 1);
 	}
 	return (0);
@@ -86,6 +86,5 @@ int	main(int ac, char **av)
 	if (parsing(ac, av, &configs))
 		return (1);
 	run_game(&configs);
-	free_everything(g_c(0, 0), -1);
 	return (0);
 }

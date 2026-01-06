@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_5.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielouarr <ielouarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 20:05:03 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/01 16:05:18 by ielouarr         ###   ########.fr       */
+/*   Updated: 2026/01/06 15:37:39 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ int	check_rgb(char *line)
 		return (0);
 	i = 2;
 	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	while(line[i] == '0')
 		i++;
 	component = 0;
 	if (!regularcheck(line, &i, &component))

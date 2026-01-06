@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_collecting_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielouarr <ielouarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 19:39:49 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/01 15:04:36 by ielouarr         ###   ########.fr       */
+/*   Updated: 2026/01/06 15:37:32 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	subone(int *component, char *rgbline, int *i)
 	*i = 0;
 	*component = 0;
 	while (rgbline[*i] == 32 || rgbline[*i] == 9)
+		(*i)++;
+	while(rgbline[*i] == '0')
 		(*i)++;
 }
 

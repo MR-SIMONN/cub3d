@@ -48,11 +48,18 @@ int	init_mlx(t_config *cfg)
 		return (1);
 	cfg->mlx.img = mlx_new_image(cfg->mlx.mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (!cfg->mlx.img)
+	{
+		mlx_destroy_window (cfg->mlx.mlx, cfg->mlx.win);
 		return (1);
+	}
 	cfg->mlx.addr = mlx_get_data_addr(cfg->mlx.img,
 			&cfg->mlx.bpp, &cfg->mlx.line_len, &cfg->mlx.endian);
 	if (!cfg->mlx.addr)
+	{
+		mlx_destroy_window (cfg->mlx.mlx, cfg->mlx.win);
+		mlx_destroy_image (cfg->mlx.mlx, cfg->mlx.img);
 		return (1);
+	}
 	return (0);
 }
 
