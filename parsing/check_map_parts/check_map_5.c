@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 20:05:03 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/06 16:35:07 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/09 19:16:12 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,20 +63,24 @@ int	check_comma(char *line, int *i, int *component)
 int	regularcheck(char *line, int *i, int *component)
 {
 	int	count;
+	int	start;
 
 	while ((*component) < 3)
 	{
 		count = 0;
+		while (line[*i] == '0')
+			(*i)++;
 		if (line[*i] < '0' || line[*i] > '9')
 			return (0);
+		start = *i;
 		while (line[*i] >= '0' && line[*i] <= '9')
 		{
 			count++;
 			(*i)++;
 		}
-		if (count == 0 || count > 3)
+		if (count == 0 || count > 3 || !check_comma(line, i, component))
 			return (0);
-		if (!check_comma(line, i, component))
+		if (!checkrange(line, start))
 			return (0);
 		while (line[*i] == ' ' || line[*i] == '\t')
 			(*i)++;
@@ -94,8 +98,6 @@ int	check_rgb(char *line)
 		return (0);
 	i = 2;
 	while (line[i] == ' ' || line[i] == '\t')
-		i++;
-	while (line[i] == '0')
 		i++;
 	component = 0;
 	if (!regularcheck(line, &i, &component))

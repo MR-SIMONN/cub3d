@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 19:39:49 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/06 16:35:15 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/09 18:54:21 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	subone(int *component, char *rgbline, int *i)
 	*component = 0;
 	while (rgbline[*i] == 32 || rgbline[*i] == 9)
 		(*i)++;
-	while (rgbline[*i] == '0')
-		(*i)++;
 }
 
 int	regularget(char *rgbline, int *i, int *component, char **rgb)
@@ -45,6 +43,8 @@ int	regularget(char *rgbline, int *i, int *component, char **rgb)
 	while ((*component) < 3)
 	{
 		count = 0;
+		while (rgbline[*i] == '0')
+			(*i)++;
 		if (rgbline[*i] < '0' || rgbline[*i] > '9')
 			return (0);
 		start = *i;

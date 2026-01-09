@@ -6,11 +6,23 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 16:42:26 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/06 16:52:27 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/09 19:13:33 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
+
+int	checkrange(char *line, int start)
+{
+	int	n;
+
+	n = 0;
+	while (line[start] >= '0' && line[start] <= '9')
+		n = (n * 10) + (line[start++] - '0');
+	if (n > 255)
+		return (0);
+	return (1);
+}
 
 int	gettofilenamee(char *line, int *i, int *j)
 {

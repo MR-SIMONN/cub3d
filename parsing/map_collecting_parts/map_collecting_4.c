@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 20:53:53 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/06 16:01:29 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/09 19:12:08 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,11 @@ int	fcollect(char *mapfile, t_config *cfg)
 	{
 		ret = process_line(line, fd, cfg);
 		if (ret == 1)
-			return (1);
+			return (close (fd), 1);
 		if (ret == 2)
-			return (0);
+			return (close (fd), 0);
 		line = get_next_line(fd);
 	}
+	close(fd);
 	return (1);
 }

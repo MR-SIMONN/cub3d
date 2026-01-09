@@ -213,5 +213,6 @@ void			free_everything(t_heap *h, int exit_value, int _destroy_mlx);
 void			*ft_malloc(size_t size, t_config *d);
 t_heap			*g_c(int should_update,	t_heap *new_value);
 t_config		*configs(int should_update,	t_config *new_value);
+int				checkrange(char *line, int start);
 
 #endif
