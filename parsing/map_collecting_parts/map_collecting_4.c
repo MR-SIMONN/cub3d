@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 20:53:53 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/09 19:12:08 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/10 11:32:10 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	fcollect(char *mapfile, t_config *cfg)
 
 	fd = open(mapfile, O_RDONLY);
 	if (fd < 0)
-		return (printf("Error: cannot open map file\n"), 0);
+		return (printf("Error\n cannot open map file\n"), 0);
 	line = get_next_line(fd);
 	while (line)
 	{

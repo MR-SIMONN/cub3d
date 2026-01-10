@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 19:39:49 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/09 18:54:21 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/10 11:31:22 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ int	regularget(char *rgbline, int *i, int *component, char **rgb)
 	while ((*component) < 3)
 	{
 		count = 0;
-		while (rgbline[*i] == '0')
-			(*i)++;
 		if (rgbline[*i] < '0' || rgbline[*i] > '9')
 			return (0);
 		start = *i;

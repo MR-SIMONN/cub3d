@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:30:21 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/09 19:03:48 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/10 11:33:08 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,22 +58,22 @@ int	parsing(int ac, char **av, t_config *configs)
 	int	fd;
 
 	if (ac != 2)
-		return (printf("Error\nCub3d : Invalid args [./cub3d your_map]"), 1);
+		return (printf("Error\nCub3d : Invalid args [./cub3d your_map]\n"), 1);
 	if (!check_cub3d_filename(av[1]))
-		return (printf("Error\nCub3d : Wrong map name [your_map`.cub`]"), 1);
+		return (printf("Error\nCub3d : Wrong map name [your_map`.cub`]\n"), 1);
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
-		return (printf("Error\nCub3d : can't access the file map"), 1);
+		return (printf("Error\nCub3d : can't access the file map\n"), 1);
 	close(fd);
 	init_config(configs);
 	if (check_validmap(av[1], configs))
-		return (printf("Error\nCub3d : invalid map"),
+		return (printf("Error\nCub3d : invalid map\n"),
 			free_everything(g_c(0, 0), -1, 0), 1);
 	ret = mapcollecting(configs, av[1]);
 	if (ret)
 	{
 		free_everything(g_c(0, 0), -1, 0);
-		return (printf("Error\nCub3d : invalid map"), 1);
+		return (printf("Error\nCub3d : invalid map\n"), 1);
 	}
 	return (0);
 }

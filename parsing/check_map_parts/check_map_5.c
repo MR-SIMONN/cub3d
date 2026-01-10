@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 20:05:03 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/09 19:16:12 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/10 11:28:37 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ int	regularcheck(char *line, int *i, int *component)
 	while ((*component) < 3)
 	{
 		count = 0;
-		while (line[*i] == '0')
-			(*i)++;
 		if (line[*i] < '0' || line[*i] > '9')
 			return (0);
 		start = *i;

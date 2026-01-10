@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 17:34:10 by moel-hai          #+#    #+#             */
-/*   Updated: 2026/01/06 15:28:42 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/10 11:32:40 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ void	*ft_malloc(size_t size, t_config *d)
 	p = malloc(sizeof(t_heap));
 	if (!p)
 	{
-		ft_putstr_fd("unexpected error with malloc\n", 2);
+		ft_putstr_fd("Error\nunexpected error with malloc\n", 2);
 		free_everything(d->garbage, 1, 0);
 	}
 	allocated = malloc(size);
 	if (!allocated)
 	{
-		ft_putstr_fd("unexpected error with malloc\n", 2);
+		ft_putstr_fd("Error\nunexpected error with malloc\n", 2);
 		free(p);
 		free_everything(d->garbage, 1, 0);
 	}
