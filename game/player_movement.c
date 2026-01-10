@@ -56,7 +56,11 @@ void	rotate_player(t_config *cfg, double rot_speed)
 
 int	keys_update(t_config *cfg)
 {
-	if (cfg->key.w)
+	if (cfg->key.w && cfg->key.a)
+		move_player(cfg, cfg->player.dir_x / 2, cfg->player.dir_y / 2);
+	if (cfg->key.w && cfg->key.d)
+		move_player(cfg, cfg->player.dir_x / 2, cfg->player.dir_y / 2);
+	if (cfg->key.w && !cfg->key.a && !cfg->key.d)
 		move_player(cfg, cfg->player.dir_x, cfg->player.dir_y);
 	if (cfg->key.d)
 		move_player(cfg, cfg->player.plane_x, cfg->player.plane_y);
