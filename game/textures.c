@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 10:09:58 by moel-hai          #+#    #+#             */
-/*   Updated: 2026/01/10 11:32:04 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/10 20:56:08 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ int	load_texture(char *path, t_texture_img *tex, void *mlx)
 int	load_all_textures(t_config *cfg)
 {
 	if (load_texture(cfg->textures.no, &cfg->tex_no, cfg->mlx.mlx))
-		return (printf("Error\n Failed to load NO texture\n"), 1);
+		return (printf("Error\nFailed to load NO texture\n"), 1);
 	if (load_texture(cfg->textures.so, &cfg->tex_so, cfg->mlx.mlx))
-		return (printf("Error\n Failed to load SO texture\n"), 1);
+		return (printf("Error\nFailed to load SO texture\n"), 1);
 	if (load_texture(cfg->textures.we, &cfg->tex_we, cfg->mlx.mlx))
-		return (printf("Error\n Failed to load WE texture\n"), 1);
+		return (printf("Error\nFailed to load WE texture\n"), 1);
 	if (load_texture(cfg->textures.ea, &cfg->tex_ea, cfg->mlx.mlx))
-		return (printf("Error\n Failed to load EA texture\n"), 1);
+		return (printf("Error\nFailed to load EA texture\n"), 1);
 	return (0);
 }
 

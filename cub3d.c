@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:30:21 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/10 11:33:08 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/10 20:55:03 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	gettofilename(char *line, int *i, int *j)
 {
 	if (!line)
 		return (0);
-	*i = 2;
+	*i = 0;
 	while (line[*i] && (line[*i] == ' ' || line[*i] == '\t'))
 		(*i)++;
 	if (!line[*i] || line[*i] == '\n')

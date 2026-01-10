@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 19:57:33 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/06 16:01:05 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/10 20:55:51 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static int	init_tex_ctx(t_tex_par *ctx, char *map, t_config *cfg)
 	ctx->cfg = cfg;
 	if (ft_initit(map, ctx->dup, &ctx->fd, &ctx->tex_total) < 0)
 	{
-		printf("have problem in fd of map check\n");
+		printf("Error\nHave problem in fd of map check\n");
 		return (-1);
 	}
 	return (0);
