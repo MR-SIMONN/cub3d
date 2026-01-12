@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 20:15:04 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/06 16:00:58 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/12 22:01:30 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ char	**collectmap(char *line, int fd, t_config *cfg)
 			if (sc_init(&map_extract, &capacity, count, cfg))
 				return (NULL);
 		}
-		if (line[0] == '\n' || line[0] == '\0')
-			break ;
+		if (line[0] == '\n' && skipnewlines(fd))
+			return (NULL);
 		map_extract[count++] = remove_backslash_n(line, cfg);
 		line = get_next_line(fd);
 	}

@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 16:42:26 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/09 19:13:33 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/12 22:00:55 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,16 @@ int	check_validmap(char *mapfile_name, t_config *cfg)
 	if (checkmap(map))
 		return (1);
 	return (0);
+}
+
+int	skipnewlines(int fd)
+{
+	char	*line;
+
+	line = get_next_line(fd);
+	while (line && line[0] == '\n')
+		line = get_next_line(fd);
+	if (!line)
+		return (0);
+	return (1);
 }

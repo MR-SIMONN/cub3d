@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_4.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ielouarr <ielouarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 19:59:09 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/01 16:05:08 by ielouarr         ###   ########.fr       */
+/*   Updated: 2026/01/12 22:01:51 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	**mapextracting(char *line, int fd, t_config *cfg)
 			capacity *= 2;
 			map_extract = realloc_map(map_extract, count, capacity, cfg);
 		}
-		if (line[0] == '\n' || line[0] == '\0')
+		if (line[0] == '\n' && skipnewlines(fd))
 			return (NULL);
 		map_extract[count++] = remove_backslash_n(line, cfg);
 		line = get_next_line(fd);

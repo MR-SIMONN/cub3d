@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 20:05:03 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/12 17:30:08 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/12 22:02:15 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	check_comma(char *line, int *i, int *component)
 	return (1);
 }
 
-int    regularcheck(char *l, int *i, int *component)
+int	regularcheck(char *l, int *i, int *component)
 {
 	int	count;
 	int	start;

@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 13:34:13 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/12 16:52:14 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/12 21:57:50 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,5 +214,6 @@ void			*ft_malloc(size_t size, t_config *d);
 t_heap			*g_c(int should_update,	t_heap *new_value);
 t_config		*configs(int should_update,	t_config *new_value);
 int				checkrange(char *line, int start);
+int				skipnewlines(int fd);
 
 #endif

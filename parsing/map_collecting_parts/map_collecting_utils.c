@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 19:39:49 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/12 20:07:13 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/12 22:04:09 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	subone(int *component, char *rgbline, int *i)
 		(*i)++;
 }
 
-int    regularget(char *lrgb, int *i, int *component, char **rgb)
+int	regularget(char *lrgb, int *i, int *component, char **rgb)
 {
 	int	count;
 	int	start;
@@ -60,7 +60,7 @@ int    regularget(char *lrgb, int *i, int *component, char **rgb)
 		rgb[*component] = ft_substr(lrgb, start, 3);
 		(*component)++;
 	}
- 	return (1);
+	return (1);
 }
 
 char	**get_rgb(char *rgbline, t_config *cfg)
