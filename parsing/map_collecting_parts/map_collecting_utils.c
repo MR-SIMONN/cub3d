@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 19:39:49 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/10 11:31:22 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/12 20:07:13 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	subone(int *component, char *rgbline, int *i)
 		(*i)++;
 }
 
-int	regularget(char *rgbline, int *i, int *component, char **rgb)
+int    regularget(char *lrgb, int *i, int *component, char **rgb)
 {
 	int	count;
 	int	start;
@@ -43,22 +43,24 @@ int	regularget(char *rgbline, int *i, int *component, char **rgb)
 	while ((*component) < 3)
 	{
 		count = 0;
-		if (rgbline[*i] < '0' || rgbline[*i] > '9')
+		if (lrgb[*i] < '0' || lrgb[*i] > '9')
 			return (0);
+		while (lrgb[*i] == '0' && lrgb[*i + 1] >= '0' && lrgb[*i + 1] <= '9')
+			(*i)++;
 		start = *i;
-		while (rgbline[*i] >= '0' && rgbline[*i] <= '9')
+		while (lrgb[*i] >= '0' && lrgb[*i] <= '9')
 		{
 			count++;
 			(*i)++;
 		}
 		if (count == 0 || count > 3)
 			return (0);
-		if (!check_coma(rgbline, i, *component))
+		if (!check_coma(lrgb, i, *component))
 			return (0);
-		rgb[*component] = ft_substr(rgbline, start, 3);
+		rgb[*component] = ft_substr(lrgb, start, 3);
 		(*component)++;
 	}
-	return (1);
+ 	return (1);
 }
 
 char	**get_rgb(char *rgbline, t_config *cfg)

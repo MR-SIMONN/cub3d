@@ -6,7 +6,7 @@
 /*   By: moel-hai <moel-hai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 20:05:03 by ielouarr          #+#    #+#             */
-/*   Updated: 2026/01/10 11:28:37 by moel-hai         ###   ########.fr       */
+/*   Updated: 2026/01/12 17:30:08 by moel-hai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	check_comma(char *line, int *i, int *component)
 	return (1);
 }
 
-int	regularcheck(char *line, int *i, int *component)
+int    regularcheck(char *l, int *i, int *component)
 {
 	int	count;
 	int	start;
@@ -68,19 +68,21 @@ int	regularcheck(char *line, int *i, int *component)
 	while ((*component) < 3)
 	{
 		count = 0;
-		if (line[*i] < '0' || line[*i] > '9')
+		if (l[*i] < '0' || l[*i] > '9')
 			return (0);
+		while (l[*i] == '0' && l[*i + 1] >= '0' && l[*i + 1] <= '9')
+			(*i)++;
 		start = *i;
-		while (line[*i] >= '0' && line[*i] <= '9')
+		while (l[*i] >= '0' && l[*i] <= '9')
 		{
 			count++;
 			(*i)++;
 		}
-		if (count == 0 || count > 3 || !check_comma(line, i, component))
+		if (count == 0 || count > 3 || !check_comma(l, i, component))
 			return (0);
-		if (!checkrange(line, start))
+		if (!checkrange(l, start))
 			return (0);
-		while (line[*i] == ' ' || line[*i] == '\t')
+		while (l[*i] == ' ' || l[*i] == '\t')
 			(*i)++;
 		(*component)++;
 	}
