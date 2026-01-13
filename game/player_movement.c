@@ -22,13 +22,13 @@ void	move_player(t_config *cfg, double dir_x, double dir_y)
 	new_x = cfg->player.x + dir_x * PLAYER_SPEED;
 	new_y = cfg->player.y + dir_y * PLAYER_SPEED;
 	if (dir_x > 0)
-		move_x_padding = 10;
+		move_x_padding = 5;
 	else
-		move_x_padding = -10;
+		move_x_padding = -5;
 	if (dir_y > 0)
-		move_y_padding = 10;
+		move_y_padding = 5;
 	else
-		move_y_padding = -10;
+		move_y_padding = -5;
 	if (cfg->map.grid[(int)((new_y + move_y_padding) / 64)]
 			[(int)(cfg->player.x / 64)] != '1')
 		cfg->player.y = new_y;
@@ -56,15 +56,15 @@ void	rotate_player(t_config *cfg, double rot_speed)
 
 int	keys_update(t_config *cfg)
 {
-	if (cfg->key.w)
+	if (cfg->key.w && !cfg->key.s)
 		move_player(cfg, cfg->player.dir_x, cfg->player.dir_y);
-	else if (cfg->key.d)
-		move_player(cfg, cfg->player.plane_x, cfg->player.plane_y);
-	else if (cfg->key.s)
+	else if (cfg->key.s && !cfg->key.w)
 		move_player(cfg, -cfg->player.dir_x, -cfg->player.dir_y);
-	else if (cfg->key.a)
+	else if (cfg->key.d && !cfg->key.a)
+		move_player(cfg, cfg->player.plane_x, cfg->player.plane_y);
+	else if (cfg->key.a && !cfg->key.d)
 		move_player(cfg, -cfg->player.plane_x, -cfg->player.plane_y);
-	else if (cfg->key.left)
+	if (cfg->key.left)
 		rotate_player(cfg, -ROTATION_SPEED);
 	else if (cfg->key.right)
 		rotate_player(cfg, ROTATION_SPEED);
