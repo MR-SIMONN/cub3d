@@ -23,7 +23,7 @@ void	put_pixel_to_img(t_mlx *mlx, int x, int y, int color)
 	bytes_per_pixel = mlx->bpp / 8;
 	offset = (y * mlx->line_len) + (x * bytes_per_pixel);
 	dst = mlx->addr + offset;
-	*(int *)dst = (int)color;
+	*(int *)dst = color;
 }
 
 int	get_texture_pixel(t_texture_img *tex, int x, int y)
